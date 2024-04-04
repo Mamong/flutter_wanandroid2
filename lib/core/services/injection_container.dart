@@ -1,0 +1,41 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_wanandroid2/core/common/singletons/cache.dart';
+import 'package:flutter_wanandroid2/src/article/data/datasources/article_remote_data_src.dart';
+import 'package:flutter_wanandroid2/src/article/data/repos/article_repo_impl.dart';
+import 'package:flutter_wanandroid2/src/article/domain/repos/article_repo.dart';
+import 'package:flutter_wanandroid2/src/article/domain/usecases/get_articles.dart';
+import 'package:flutter_wanandroid2/src/article/domain/usecases/get_hierarchy_articles.dart';
+import 'package:flutter_wanandroid2/src/article/domain/usecases/get_project_articles.dart';
+import 'package:flutter_wanandroid2/src/article/domain/usecases/get_search_articles.dart';
+import 'package:flutter_wanandroid2/src/article/domain/usecases/get_tops.dart';
+import 'package:flutter_wanandroid2/src/article/domain/usecases/get_wx_articles.dart';
+import 'package:flutter_wanandroid2/src/auth/data/datasources/auth_remote_data_src.dart';
+import 'package:flutter_wanandroid2/src/auth/data/repos/auth_repo_impl.dart';
+import 'package:flutter_wanandroid2/src/auth/domain/repos/auth_repo.dart';
+import 'package:flutter_wanandroid2/src/auth/domain/usecases/get_user.dart';
+import 'package:flutter_wanandroid2/src/auth/domain/usecases/login.dart';
+import 'package:flutter_wanandroid2/src/auth/domain/usecases/logout.dart';
+import 'package:flutter_wanandroid2/src/auth/domain/usecases/register.dart';
+import 'package:flutter_wanandroid2/src/collection/data/datasources/collection_remote_data_src.dart';
+import 'package:flutter_wanandroid2/src/collection/data/repos/collection_repo_impl.dart';
+import 'package:flutter_wanandroid2/src/collection/domain/repos/collection_repo.dart';
+import 'package:flutter_wanandroid2/src/collection/domain/usecases/collect_article.dart';
+import 'package:flutter_wanandroid2/src/collection/domain/usecases/get_collect_articles.dart';
+import 'package:flutter_wanandroid2/src/collection/domain/usecases/uncollect_article.dart';
+import 'package:flutter_wanandroid2/src/collection/domain/usecases/uncollect_my_article.dart';
+import 'package:flutter_wanandroid2/src/home/data/datsources/home_remote_data_src.dart';
+import 'package:flutter_wanandroid2/src/home/data/repos/home_repo_impl.dart';
+import 'package:flutter_wanandroid2/src/home/domain/repos/home_repo.dart';
+import 'package:flutter_wanandroid2/src/home/domain/usecases/get_banner.dart';
+import 'package:flutter_wanandroid2/src/home/domain/usecases/get_guide_list.dart';
+import 'package:flutter_wanandroid2/src/home/domain/usecases/get_hierarchy.dart';
+import 'package:flutter_wanandroid2/src/home/domain/usecases/get_project_tree.dart';
+import 'package:flutter_wanandroid2/src/home/domain/usecases/get_wxarticle_tree.dart';
+import 'package:get_it/get_it.dart';
+import 'package:network/network.dart';
+
+import '../common/app_storage_service.dart';
+
+import 'package:key_value_storage/key_value_storage.dart';
+
+part 'injection_container.main.dart';

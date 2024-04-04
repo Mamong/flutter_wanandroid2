@@ -1,0 +1,90 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_wanandroid2/core/common/app/app_settings_provider.dart';
+import 'package:flutter_wanandroid2/core/utils/enums/language_enum.dart';
+import 'package:go_router/go_router.dart';
+import 'package:theme/theme.dart';
+
+class SettingsOptions extends ConsumerWidget {
+  SettingsOptions({super.key});
+
+  final showColorsNotifier = ValueNotifier(false);
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final settings = ref.watch(appSettingsProvider);
+    final languageCode = settings.language;
+
+    Language language = Language.values
+        .firstWhere((Language item) => item.code == languageCode);
+
+    return ListView(
+      children: [
+        ValueListenableBuilder(
+            valueListenable: showColorsNotifier,
+            builder: (_, value, __) {
+              return ExpansionTile(
+                leading: const Icon(Icons.color_lens),
+                title: const Text("主题"),
+                trailing: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Container(
+                      width: 35,
+                      height: 35,
+                      color: settings.themeColor,
+                    ),
+                    AnimatedRotation(
+                      turns: value ? 0.5 : 0,
+                      duration: const Duration(milliseconds: 200),
+                      curve: Curves.easeInOut,
+                      child: const Icon(Icons.arrow_downward),
+                    )
+                  ],
+                ),
+                onExpansionChanged: (expand) {
+                  showColorsNotifier.value = expand;
+                },
+                children: [
+                  Wrap(
+                    spacing: 7.5,
+                    runSpacing: 7.5,
+                    children: themeColors
+                        .map((e) => GestureDetector(
+                              onTap: () {
+                                final setThemeProvider =
+                                    ref.read(appSettingsProvider.notifier);
+                                setThemeProvider.setThemeColor(e.color);
+                              },
+                              child: Container(
+                                width: 35,
+                                height: 35,
+                                color: Color(e.color),
+                              ),
+                            ))
+                        .toList(),
+                  )
+                ],
+              );
+            }),
+        ListTile(
+          leading: const Icon(Icons.language),
+          title: const Text("多语言"),
+          trailing: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                language.title,
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+              const Icon(Icons.arrow_right_alt),
+            ],
+          ),
+          onTap: () {
+            context.push("/settings/language");
+          },
+        )
+      ],
+    );
+  }
+}
