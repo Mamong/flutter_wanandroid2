@@ -16,11 +16,11 @@ class Article {
   final String link;
   final String niceDate;
   final String origin;
-  int? originId;
+  final int? originId;
   final int publishTime;
-  final int? shareDate;
+  // final int? shareDate;
   final String shareUser;
-  final int superChapterId;
+  // final int superChapterId;
   final String superChapterName;
   // final List<TagRM> tags;
   final String title;
@@ -42,10 +42,11 @@ class Article {
     required this.link,
     required this.niceDate,
     required this.origin,
+    this.originId,
     required this.publishTime,
-    this.shareDate,
+    // this.shareDate,
     required this.shareUser,
-    required this.superChapterId,
+    // required this.superChapterId,
     required this.superChapterName,
     required this.title,
     required this.type,

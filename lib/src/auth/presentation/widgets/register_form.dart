@@ -1,37 +1,54 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_wanandroid2/core/res/styles/colors.dart';
 import 'package:flutter_wanandroid2/core/utils/core_utils.dart';
+import 'package:flutter_wanandroid2/l10n/app_localizations.dart';
 import 'package:flutter_wanandroid2/src/auth/presentation/app/riverpod/auth_provider.dart';
+import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 
 class RegisterForm extends ConsumerStatefulWidget {
   const RegisterForm({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => RegisterFormState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _RegisterFormState();
 }
 
-class RegisterFormState extends ConsumerState<RegisterForm> {
+class _RegisterFormState extends ConsumerState<RegisterForm> {
   final TextEditingController unameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController passwordAgainController = TextEditingController();
+  final TapGestureRecognizer tapGestureRecognizer = TapGestureRecognizer();
 
   final GlobalKey _formKey = GlobalKey<FormState>();
   final obscurePasswordNotifier = ValueNotifier(true);
   final obscurePasswordAgainNotifier = ValueNotifier(true);
 
   @override
+  void initState() {
+    super.initState();
+    tapGestureRecognizer.onTap = () {
+      context.replace("/login");
+    };
+  }
+
+  @override
   void dispose() {
-    super.dispose();
     unameController.dispose();
     passwordController.dispose();
     passwordAgainController.dispose();
     obscurePasswordNotifier.dispose();
     obscurePasswordAgainNotifier.dispose();
+    tapGestureRecognizer.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+
     final authState = ref.watch(authProvider());
     ref.listen(authProvider(), (_, next) {
       //处理失败和成功
@@ -50,82 +67,116 @@ class RegisterFormState extends ConsumerState<RegisterForm> {
     return Form(
         key: _formKey,
         autovalidateMode: AutovalidateMode.always,
-        child: Column(
-          children: [
-            TextFormField(
-              autofocus: true,
-              controller: unameController,
-              decoration: const InputDecoration(
-                  labelText: "用户名",
-                  hintText: "输入用户名",
-                  icon: Icon(Icons.person)),
-              validator: (v) {
-                return v!.trim().isNotEmpty ? null : '用户名不能为空';
-              },
-            ),
-            ValueListenableBuilder(
-                valueListenable: obscurePasswordNotifier,
-                builder: (_, value, __) {
-                  return TextFormField(
-                    autofocus: true,
-                    obscureText: value,
-                    controller: passwordController,
-                    decoration: InputDecoration(
-                      labelText: "密码",
-                      hintText: "输入密码",
-                      icon: const Icon(Icons.lock),
-                      suffix: IconButton(
-                        icon: const Icon(Icons.remove_red_eye),
-                        onPressed: () {
-                          obscurePasswordNotifier.value = !value;
+        child: Padding(
+            padding: EdgeInsets.all(60.w),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Gap(40.w),
+                TextFormField(
+                  autofocus: true,
+                  controller: unameController,
+                  decoration: InputDecoration(
+                      //labelText: l10n.login_userName,
+                      hintText: l10n.login_userName,
+                      icon: const Icon(Icons.person)),
+                  validator: (v) {
+                    if (v == null || v.trim().isEmpty) {
+                      return l10n.tips_username_empty;
+                    }
+                    return null;
+                  },
+                ),
+                ValueListenableBuilder(
+                    valueListenable: obscurePasswordNotifier,
+                    builder: (_, value, __) {
+                      return TextFormField(
+                        autofocus: true,
+                        obscureText: value,
+                        controller: passwordController,
+                        decoration: InputDecoration(
+                          //labelText: l10n.login_pwd,
+                          hintText: l10n.login_pwd,
+                          icon: const Icon(Icons.lock),
+                          suffix: IconButton(
+                            icon: const Icon(Icons.remove_red_eye),
+                            onPressed: () {
+                              obscurePasswordNotifier.value = !value;
+                            },
+                          ),
+                        ),
+                        validator: (v) {
+                          if (v == null || v.trim().isEmpty) {
+                            return l10n.tips_pwd_empty;
+                          }
+                          return null;
                         },
-                      ),
-                    ),
-                    validator: (v) {
-                      if (v == null || v.trim().isEmpty) return '密码不能为空';
-                      return null;
-                    },
-                  );
-                }),
-            ValueListenableBuilder(
-                valueListenable: obscurePasswordAgainNotifier,
-                builder: (_, value, __) {
-                  return TextFormField(
-                    autofocus: true,
-                    obscureText: value,
-                    controller: passwordAgainController,
-                    decoration: InputDecoration(
-                      labelText: "确认密码",
-                      hintText: "再次输入密码",
-                      icon: const Icon(Icons.lock),
-                      suffix: IconButton(
-                        icon: const Icon(Icons.remove_red_eye),
-                        onPressed: () {
-                          obscurePasswordAgainNotifier.value = !value;
+                      );
+                    }),
+                ValueListenableBuilder(
+                    valueListenable: obscurePasswordAgainNotifier,
+                    builder: (_, value, __) {
+                      return TextFormField(
+                        autofocus: true,
+                        obscureText: value,
+                        controller: passwordAgainController,
+                        decoration: InputDecoration(
+                          //labelText: l10n.register_confirm_pwd,
+                          hintText: l10n.register_confirm_pwd,
+                          icon: const Icon(Icons.lock),
+                          suffix: IconButton(
+                            icon: const Icon(Icons.remove_red_eye),
+                            onPressed: () {
+                              obscurePasswordAgainNotifier.value = !value;
+                            },
+                          ),
+                        ),
+                        validator: (v) {
+                          if (v == null || v.trim().isEmpty) {
+                            return l10n.tips_pwd_confirm_empty;
+                          }
+                          return null;
                         },
-                      ),
-                    ),
-                    validator: (v) {
-                      if (v == null || v.trim().isEmpty) return '密码不能为空';
-                      return null;
-                    },
-                  );
-                }),
-            ElevatedButton(
-                onPressed: authState is AuthLoading
-                    ? null
-                    : () {
-                        if ((_formKey.currentState as FormState).validate()) {
-                          ref.read(authProvider().notifier).register(
-                              username: unameController.text,
-                              password: passwordController.text,
-                              repassword: passwordAgainController.text);
-                        }
-                      },
-                child: authState is AuthLoading
-                    ? const CircularProgressIndicator()
-                    : const Text('注册')),
-          ],
-        ));
+                      );
+                    }),
+                Gap(60.w),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 50.w),
+                  child: SizedBox(
+                      height: 100.w,
+                      child: FilledButton(
+                          onPressed: authState is AuthLoading
+                              ? null
+                              : () {
+                                  if ((_formKey.currentState as FormState)
+                                      .validate()) {
+                                    ref.read(authProvider().notifier).register(
+                                        username: unameController.text,
+                                        password: passwordController.text,
+                                        repassword:
+                                            passwordAgainController.text);
+                                  }
+                                },
+                          child: authState is AuthLoading
+                              ? const CircularProgressIndicator()
+                              : Text(l10n.register))),
+                ),
+                Gap(40.w),
+                RichText(
+                  text: TextSpan(
+                      style:
+                          TextStyle(fontSize: 28.w, color: Colours.TEXT_LIGHT),
+                      children: [
+                        TextSpan(text: l10n.register_to_login),
+                        TextSpan(
+                            text: l10n.login,
+                            style: TextStyle(
+                                color: Theme.of(context).primaryColor),
+                            recognizer: tapGestureRecognizer)
+                      ]),
+                  textAlign: TextAlign.center,
+                ),
+              ],
+            )));
   }
 }

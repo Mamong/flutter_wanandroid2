@@ -11,18 +11,21 @@ class LanguageOptions extends ConsumerWidget {
     final settings = ref.watch(appSettingsProvider);
 
     return ListView(
-        children: Language.values
-            .map((e) => ListTile(
-                  title: Text(e.title),
-                  trailing: e.code == settings.language
-                      ? const Icon(Icons.check)
-                      : null,
-                  onTap: () {
-                    final setLanguageProvider =
-                        ref.read(appSettingsProvider.notifier);
-                    setLanguageProvider.setLanguage(e.code);
-                  },
-                ))
+        children: ListTile.divideTiles(
+                context: context,
+                tiles: Language.values
+                    .map((e) => ListTile(
+                          title: Text(e.title),
+                          trailing: e.code == settings.language
+                              ? const Icon(Icons.check)
+                              : null,
+                          onTap: () {
+                            final setLanguageProvider =
+                                ref.read(appSettingsProvider.notifier);
+                            setLanguageProvider.setLanguage(e.code);
+                          },
+                        ))
+                    .toList())
             .toList());
   }
 }

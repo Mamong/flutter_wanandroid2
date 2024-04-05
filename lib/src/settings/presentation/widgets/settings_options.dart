@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_wanandroid2/core/common/app/app_settings_provider.dart';
 import 'package:flutter_wanandroid2/core/utils/enums/language_enum.dart';
+import 'package:flutter_wanandroid2/l10n/app_localizations.dart';
 import 'package:go_router/go_router.dart';
 import 'package:theme/theme.dart';
 
@@ -13,6 +14,8 @@ class SettingsOptions extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
+
     final settings = ref.watch(appSettingsProvider);
     final languageCode = settings.language;
 
@@ -26,7 +29,7 @@ class SettingsOptions extends ConsumerWidget {
             builder: (_, value, __) {
               return ExpansionTile(
                 leading: const Icon(Icons.color_lens),
-                title: const Text("主题"),
+                title: Text(l10n.menu_theme),
                 trailing: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
@@ -73,7 +76,7 @@ class SettingsOptions extends ConsumerWidget {
             }),
         ListTile(
           leading: const Icon(Icons.language),
-          title: const Text("多语言"),
+          title: Text(l10n.language),
           trailing: Row(
             mainAxisSize: MainAxisSize.min,
             children: [

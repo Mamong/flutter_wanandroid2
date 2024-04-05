@@ -1,7 +1,4 @@
 {
-    "audioBottomNavigationBarItemLabel": "Audio",
-    "videoBottomNavigationBarItemLabel": "Video",
-    "profileBottomNavigationBarItemLabel": "Mine",
     "tips_login": "Please login first",
     "language": "Language",
     "search_placeholder": "Search for more dry goods",
@@ -42,7 +39,7 @@
     "login_pwd": "Password",
     "login_to_register": "New users? To ",
     "login_success": "Login success!",
-    "register_to_login": "Have an account? To",
+    "register_to_login": "Have an account? To ",
     "register": "register",
     "register_confirm_pwd": "Confirm password",
     "footer_load_more": "Playing with life loading...",

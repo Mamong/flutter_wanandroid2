@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_wanandroid2/core/common/app/app_settings_provider.dart';
 import 'package:flutter_wanandroid2/core/common/app/current_user_provider.dart';
 import 'package:flutter_wanandroid2/core/utils/core_utils.dart';
 import 'package:flutter_wanandroid2/l10n/app_localizations.dart';
@@ -25,7 +24,6 @@ class DashboardDrawer extends ConsumerWidget {
       ('logout', Icons.power_settings_new, l10n.menu_logout),
     ];
 
-    final settingsProvider = ref.watch(appSettingsProvider);
     final user = ref.watch(currentUserProvider);
 
     ref.listen(authProvider(), (_, next) {
@@ -40,65 +38,75 @@ class DashboardDrawer extends ConsumerWidget {
         child: ListView(
             padding: const EdgeInsets.only(top: 0.0),
             children: <Widget>[
-      UserAccountsDrawerHeader(
-        currentAccountPictureSize: Size.square(200.w),
-        accountEmail: Text(user?.username ?? '登录'),
-        accountName: const Text(''),
-        currentAccountPicture: GestureDetector(
-            onTap: () {
-              if (user == null) context.push('/login');
-            },
-            child: CircleAvatar(
-              child: user != null
-                  ? Image.asset("assets/images/logo.jpg")
-                  : const Icon(Icons.person),
-            )),
-        otherAccountsPictures: <Widget>[
-          IconButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              icon: const Icon(Icons.cancel),color: Colors.white,)
-        ],
-        decoration:
-            BoxDecoration(color: settingsProvider.themeColor),
-      ),
-      ...drawerData.map((e) => ListTile(
-            title: Text(e.$3),
-            leading: Icon(e.$2),
-            // trailing: e.$1.startsWith("/")
-            //     ? const Icon(Icons.arrow_forward_ios)
-            //     : null,
-            onTap: () {
-              if (e.$1 == 'share') {
-              } else if (e.$1 == 'logout') {
-                showDialog(
-                    context: context,
-                    builder: (context) {
-                      return AlertDialog(
-                        title: const Text('提示'),
-                        content: const Text('确定退出？'),
-                        actions: [
-                          TextButton(
-                            onPressed: () {
-                              Navigator.of(context).pop();
-                            },
-                            child: const Text("取消"),
-                          ),
-                          TextButton(
-                            onPressed: () async {
-                              ref.read(authProvider().notifier).logout();
-                            },
-                            child: const Text("确定"),
-                          ),
-                        ],
-                      );
-                    });
-              } else {
-                context.push(e.$1);
-              }
-            },
-          ))
-    ]));
+          UserAccountsDrawerHeader(
+            currentAccountPictureSize: Size.square(160.w),
+            accountEmail: Text(user?.username ?? l10n.login),
+            accountName: const Text(''),
+            currentAccountPicture: GestureDetector(
+                onTap: () {
+                  if (user == null) context.push('/login');
+                },
+                child: CircleAvatar(
+                  child: user != null
+                      ? Image.asset("assets/images/logo.jpg")
+                      : const Icon(Icons.person),
+                )),
+            otherAccountsPictures: <Widget>[
+              IconButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                icon: const Icon(Icons.cancel),
+                color: Colors.white,
+              )
+            ],
+            decoration: BoxDecoration(color: Theme.of(context).primaryColor),
+          ),
+          ...drawerData
+              .where((value) => user != null || value.$1 != 'logout')
+              .map((e) => ListTile(
+                    title: Text(e.$3),
+                    leading: Icon(e.$2),
+                    // trailing: e.$1.startsWith("/")
+                    //     ? const Icon(Icons.arrow_forward_ios)
+                    //     : null,
+                    onTap: () {
+                      if (user == null &&
+                          ['/coin-detail', '/collection'].contains(e.$1)) {
+                        context.push('/login');
+                        return;
+                      }
+                      if (e.$1 == 'share') {
+                      } else if (e.$1 == 'logout') {
+                        showDialog(
+                            context: context,
+                            builder: (context) {
+                              return AlertDialog(
+                                title: Text(l10n.tips),
+                                content: Text(l10n.logout_confirm),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                    child: Text(l10n.cancel),
+                                  ),
+                                  TextButton(
+                                    onPressed: () async {
+                                      ref
+                                          .read(authProvider().notifier)
+                                          .logout();
+                                    },
+                                    child: Text(l10n.confirm),
+                                  ),
+                                ],
+                              );
+                            });
+                      } else {
+                        context.push(e.$1);
+                      }
+                    },
+                  ))
+        ]));
   }
 }

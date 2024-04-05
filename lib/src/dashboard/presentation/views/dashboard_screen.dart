@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_wanandroid2/l10n/app_localizations.dart';
+import 'package:flutter_wanandroid2/src/dashboard/presentation/widgets/dashboard_drawer.dart';
 import 'package:go_router/go_router.dart';
-
-import '../../../../l10n/app_localizations.dart';
-import '../widgets/dashboard_drawer.dart';
 
 /// Builds the "shell" for the app by building a Scaffold with a
 /// BottomNavigationBar, where [child] is placed in the body of the Scaffold.

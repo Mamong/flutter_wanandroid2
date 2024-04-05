@@ -14,10 +14,10 @@ class GuideList extends ConsumerStatefulWidget {
   const GuideList({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => GuideListState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _GuideListState();
 }
 
-class GuideListState extends ConsumerState<GuideList> {
+class _GuideListState extends ConsumerState<GuideList> {
   final ItemScrollController leftItemScrollController = ItemScrollController();
   final ItemPositionsListener leftItemPositionsListener =
       ItemPositionsListener.create();
@@ -31,7 +31,6 @@ class GuideListState extends ConsumerState<GuideList> {
   @override
   void initState() {
     super.initState();
-
     rightItemPositionsListener.itemPositions.addListener(() async {
       await handleRightListDrag();
     });
@@ -61,8 +60,8 @@ class GuideListState extends ConsumerState<GuideList> {
     if (index < 0) return;
     final (min, max) = getVisibleRange(controller);
     final total = ref.read(guideListProvider).requireValue.length;
-    // if max index is shown, can't scroll bigger than min
-    if (max == total - 1 && index >= min!) return;
+    int maxIndex = total - 1 - (max! - min!);
+    index = index < maxIndex ? index : maxIndex;
     await controller.scrollTo(
         index: index,
         duration: const Duration(milliseconds: 300),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_wanandroid2/l10n/app_localizations.dart';
 import 'package:flutter_wanandroid2/src/settings/presentation/widgets/settings_options.dart';
 
 class SettingsScreen extends StatelessWidget {
@@ -6,9 +7,11 @@ class SettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text("设置"),
+        title: Text(l10n.menu_settings),
       ),
       body: SettingsOptions(),
     );

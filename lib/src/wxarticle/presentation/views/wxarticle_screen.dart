@@ -5,9 +5,8 @@ import 'package:flutter_wanandroid2/core/common/widgets/keep_alive.dart';
 import 'package:flutter_wanandroid2/core/common/widgets/loading_view.dart';
 import 'package:flutter_wanandroid2/l10n/app_localizations.dart';
 import 'package:flutter_wanandroid2/src/article/presentation/app/article_riverpod_provider/article_source_provider.dart';
+import 'package:flutter_wanandroid2/src/article/presentation/widgets/article_list.dart';
 import 'package:flutter_wanandroid2/src/wxarticle/presentation/app/riverpod/wxarticle_tree_provider.dart';
-
-import '../../../article/presentation/widgets/article_list.dart';
 
 class WXArticleScreen extends ConsumerWidget {
   const WXArticleScreen({super.key});
@@ -34,12 +33,10 @@ class WXArticleScreen extends ConsumerWidget {
                 body: TabBarView(
                   children: section
                       .map((e) => KeepAliveWrapper(
-                              child: ProviderScope(
-                                  overrides: [
-                                articleSourceProvider.overrideWith(
-                                    (ref) => (ArticleSource.wxarticle, e.id))
-                              ],
-                                  child: ArticleList())))
+                              child: ProviderScope(overrides: [
+                            articleSourceProvider.overrideWith(
+                                (ref) => (ArticleSource.wxarticle, e.id))
+                          ], child: ArticleList())))
                       .toList(),
                 ),
               ));

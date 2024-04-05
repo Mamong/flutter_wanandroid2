@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -10,11 +8,10 @@ class WebViewScreen extends StatefulWidget {
   final String url;
 
   @override
-  State<StatefulWidget> createState() => WebViewState();
+  State<StatefulWidget> createState() => _WebViewState();
 }
 
-class WebViewState extends State<WebViewScreen>{
-
+class _WebViewState extends State<WebViewScreen> {
   late WebViewController controller;
 
   @override

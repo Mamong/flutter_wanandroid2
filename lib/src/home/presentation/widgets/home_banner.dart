@@ -8,6 +8,7 @@ import 'package:flutter_wanandroid2/core/common/widgets/loading_view.dart';
 import 'package:flutter_wanandroid2/src/home/presentation/app/riverpod/banner_provider.dart';
 import 'package:flutter_wanandroid2/src/home/presentation/app/riverpod/banner_select_provider.dart';
 import 'package:flutter_wanandroid2/src/home/presentation/widgets/home_bannerr_title.dart';
+import 'package:go_router/go_router.dart';
 
 class HomeBanner extends ConsumerWidget {
   const HomeBanner({super.key});
@@ -30,15 +31,24 @@ class HomeBanner extends ConsumerWidget {
                 items: data.map((banner) {
                   return Builder(
                     builder: (BuildContext context) {
-                      return CachedNetworkImage(
-                        imageUrl: banner.imagePath,
-                        height: 380.w,
-                        width: MediaQuery.of(context).size.width,
-                        fit: BoxFit.cover,
-                        //placeholder: (context, url) => CircularProgressIndicator(),
-                        errorWidget: (context, url, error) =>
-                            const Icon(Icons.error),
-                      );
+                      return GestureDetector(
+                          onTap: () {
+                            context.push(Uri(
+                                path: "/webview",
+                                queryParameters: {
+                                  'title': banner.title,
+                                  'url': banner.url
+                                }).toString());
+                          },
+                          child: CachedNetworkImage(
+                            imageUrl: banner.imagePath,
+                            height: 380.w,
+                            width: MediaQuery.of(context).size.width,
+                            fit: BoxFit.cover,
+                            //placeholder: (context, url) => CircularProgressIndicator(),
+                            errorWidget: (context, url, error) =>
+                                const Icon(Icons.error),
+                          ));
                     },
                   );
                 }).toList(),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_wanandroid2/core/res/styles/colors.dart';
+import 'package:flutter_wanandroid2/src/article/domain/entities/article.dart';
 import 'package:flutter_wanandroid2/src/article/presentation/app/article_riverpod_provider/article_source_provider.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
@@ -20,8 +21,7 @@ part 'article_list_item.dart';
 final indexProvider = StateProvider<int>((ref) => 0);
 
 class ArticleList extends ConsumerWidget {
-  ArticleList(
-      {super.key, this.header});
+  ArticleList({super.key, this.header});
 
   final Widget? header;
 
@@ -30,11 +30,11 @@ class ArticleList extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final (source,ext) = ref.read(articleSourceProvider);
+    final (source, ext) = ref.read(articleSourceProvider);
     final articleList = ref.watch(ArticleAdapterProvider(source, ext));
     final hasHeader = header != null;
 
-    ref.listen(ArticleAdapterProvider(source,ext), (_, next) {
+    ref.listen(ArticleAdapterProvider(source, ext), (_, next) {
       if (next.isLoading) {
         //loading indicator shown by SmartRefresher, do nothing here
       } else {
@@ -76,11 +76,13 @@ class ArticleList extends ConsumerWidget {
               controller: _refreshController,
               onRefresh: () {
                 if (articleList.isLoading) return;
-                ref.invalidate(ArticleAdapterProvider(source,ext));
+                ref.invalidate(ArticleAdapterProvider(source, ext));
               },
               onLoading: () {
                 if (articleList.isLoading) return;
-                ref.read(ArticleAdapterProvider(source,ext).notifier).loadMore();
+                ref
+                    .read(ArticleAdapterProvider(source, ext).notifier)
+                    .loadMore();
               },
               child: ListView.separated(
                   itemBuilder: (BuildContext context, int index) {
@@ -88,12 +90,10 @@ class ArticleList extends ConsumerWidget {
                       return header;
                     }
                     print("=====$index");
-                    return ProviderScope(
-                        overrides: [
-                          indexProvider.overrideWith(
-                              (ref) => index - (hasHeader ? 1 : 0))
-                        ],
-                        child: const ArticleListItem());
+                    return ProviderScope(overrides: [
+                      indexProvider
+                          .overrideWith((ref) => index - (hasHeader ? 1 : 0))
+                    ], child: const ArticleListItem());
                   },
                   separatorBuilder: (BuildContext context, int index) =>
                       Gap(24.w),

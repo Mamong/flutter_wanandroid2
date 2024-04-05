@@ -5,15 +5,6 @@ class AppLocalizationsZh extends AppLocalizations {
   AppLocalizationsZh([String locale = 'zh']) : super(locale);
 
   @override
-  String get audioBottomNavigationBarItemLabel => '听力';
-
-  @override
-  String get videoBottomNavigationBarItemLabel => '视频';
-
-  @override
-  String get profileBottomNavigationBarItemLabel => '我的';
-
-  @override
   String get tips_login => '请先登录';
 
   @override
@@ -168,15 +159,6 @@ class AppLocalizationsZhCn extends AppLocalizationsZh {
   AppLocalizationsZhCn(): super('zh_CN');
 
   @override
-  String get audioBottomNavigationBarItemLabel => '听力';
-
-  @override
-  String get videoBottomNavigationBarItemLabel => '视频';
-
-  @override
-  String get profileBottomNavigationBarItemLabel => '我的';
-
-  @override
   String get tips_login => '请先登录';
 
   @override
@@ -329,15 +311,6 @@ class AppLocalizationsZhCn extends AppLocalizationsZh {
 /// The translations for Chinese, as used in Hong Kong (`zh_HK`).
 class AppLocalizationsZhHk extends AppLocalizationsZh {
   AppLocalizationsZhHk(): super('zh_HK');
-
-  @override
-  String get audioBottomNavigationBarItemLabel => '聽力';
-
-  @override
-  String get videoBottomNavigationBarItemLabel => '視頻';
-
-  @override
-  String get profileBottomNavigationBarItemLabel => '我的';
 
   @override
   String get tips_login => '請先登錄';

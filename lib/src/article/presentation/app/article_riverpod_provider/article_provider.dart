@@ -52,6 +52,7 @@ class ArticleAdapter extends _$ArticleAdapter
   Future<PaginatedResp<Article>> loadData(PaginatedParams query) async {
     switch (_source) {
       case ArticleSource.home:
+      case ArticleSource.collection: //not implement
         if (query.page == 0) {
           final result = await Future.wait([_getTops(), _getArticles(query)]);
           final tops = result[0] as List<Article>;
@@ -89,6 +90,7 @@ class ArticleAdapter extends _$ArticleAdapter
         //1
         return GetWxArticlesParams(page: page, pageSize: pageSize, id: _ext);
       case ArticleSource.home:
+      case ArticleSource.collection:
         //0
         return PaginatedParams(page: page, pageSize: pageSize);
     }
@@ -110,6 +112,7 @@ class ArticleAdapter extends _$ArticleAdapter
         return GetWxArticlesParams(
             page: current.curPage + 1, pageSize: current.size, id: _ext);
       case ArticleSource.home:
+      case ArticleSource.collection:
         return super.nextPage(current);
     }
   }

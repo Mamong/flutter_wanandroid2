@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_wanandroid2/l10n/app_localizations.dart';
 
 import '../widgets/login_form.dart';
 
@@ -7,9 +8,11 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text("登录"),
+        title: Text(l10n.login),
       ),
       body: const LoginForm(),
     );

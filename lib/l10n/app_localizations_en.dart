@@ -5,15 +5,6 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
-  String get audioBottomNavigationBarItemLabel => 'Audio';
-
-  @override
-  String get videoBottomNavigationBarItemLabel => 'Video';
-
-  @override
-  String get profileBottomNavigationBarItemLabel => 'Mine';
-
-  @override
   String get tips_login => 'Please login first';
 
   @override
@@ -121,7 +112,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get login_success => 'Login success!';
 
   @override
-  String get register_to_login => 'Have an account? To';
+  String get register_to_login => 'Have an account? To ';
 
   @override
   String get register => 'register';

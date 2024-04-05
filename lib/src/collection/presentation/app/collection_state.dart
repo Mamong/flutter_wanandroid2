@@ -1,7 +1,6 @@
 part of 'collection_provider.dart';
 
-
-abstract class CollectionState extends Equatable{
+abstract class CollectionState extends Equatable {
   const CollectionState();
 
   @override
@@ -17,7 +16,13 @@ class CollectionLoading extends CollectionState {
 }
 
 class CollectionFetched extends CollectionState {
-  const CollectionFetched();
+  const CollectionFetched({required this.list, this.hasMore = true});
+
+  final List<Article> list;
+  final bool hasMore;
+
+  @override
+  List<Object> get props => [list, hasMore];
 }
 
 class AddingToCollection extends CollectionState {
@@ -34,6 +39,15 @@ class RemovingFromCollection extends CollectionState {
 
 class RemovedFromCollection extends CollectionState {
   const RemovedFromCollection();
+}
+
+class RemovedFromMyCollection extends CollectionState {
+  const RemovedFromMyCollection(this.id);
+
+  final int id;
+
+  @override
+  List<Object> get props => [id];
 }
 
 class CollectionError extends CollectionState {

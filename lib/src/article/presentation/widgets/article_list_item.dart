@@ -12,6 +12,21 @@ class ArticleListItem extends ConsumerWidget {
         .watch(ArticleAdapterProvider(source, ext))
         .requireValue
         .datas[index];
+    return ArticleItem(
+      article: article,
+    );
+  }
+}
+
+class ArticleItem extends ConsumerWidget {
+  const ArticleItem({super.key, required this.article});
+
+  final Article article;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final (source, _) = ref.read(articleSourceProvider);
+
     return Container(
         padding: EdgeInsets.symmetric(horizontal: 24.w),
         child: Container(
@@ -45,7 +60,10 @@ class ArticleListItem extends ConsumerWidget {
                     ),
                     //bottom
                     ArticleBottom(
-                        date: article.niceDate, author: article.displayAuthor)
+                        id: article.id,
+                        originId: article.originId,
+                        date: article.niceDate,
+                        author: article.displayAuthor)
                   ],
                 )),
                 Gap(16.w),
@@ -131,8 +149,15 @@ class ArticleTitle extends StatelessWidget {
 }
 
 class ArticleBottom extends StatelessWidget {
-  const ArticleBottom({super.key, required this.date, required this.author});
+  const ArticleBottom(
+      {super.key,
+      required this.id,
+      this.originId,
+      required this.date,
+      required this.author});
 
+  final int id;
+  final int? originId;
   final String date;
   final String author;
 
@@ -140,7 +165,7 @@ class ArticleBottom extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        CollectionIcon(),
+        CollectionIcon(id: id, originId: originId),
         IconButton(
             onPressed: null,
             icon: Icon(

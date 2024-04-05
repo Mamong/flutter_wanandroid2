@@ -103,7 +103,7 @@ final router = GoRouter(
       path: '/hierarchy/:sectionId',
       parentNavigatorKey: rootNavigatorKey,
       builder: (_, state) => HierarchyArticlesScreen(
-        sectionId:int.parse(state.pathParameters['sectionId'] as String),
+        sectionId: int.parse(state.pathParameters['sectionId'] as String),
         cateId: int.parse(state.uri.queryParameters['cateId'] as String),
       ),
     ),
@@ -146,6 +146,14 @@ final router = GoRouter(
       parentNavigatorKey: rootNavigatorKey,
       builder: (BuildContext context, GoRouterState state) {
         return const RegisterScreen();
+      },
+      routes: const <RouteBase>[],
+    ),
+    GoRoute(
+      path: '/collection',
+      parentNavigatorKey: rootNavigatorKey,
+      builder: (BuildContext context, GoRouterState state) {
+        return const CollectionScreen();
       },
       routes: const <RouteBase>[],
     ),

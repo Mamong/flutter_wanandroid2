@@ -95,24 +95,6 @@ abstract class AppLocalizations {
     Locale('zh', 'HK')
   ];
 
-  /// No description provided for @audioBottomNavigationBarItemLabel.
-  ///
-  /// In en, this message translates to:
-  /// **'Audio'**
-  String get audioBottomNavigationBarItemLabel;
-
-  /// No description provided for @videoBottomNavigationBarItemLabel.
-  ///
-  /// In en, this message translates to:
-  /// **'Video'**
-  String get videoBottomNavigationBarItemLabel;
-
-  /// No description provided for @profileBottomNavigationBarItemLabel.
-  ///
-  /// In en, this message translates to:
-  /// **'Mine'**
-  String get profileBottomNavigationBarItemLabel;
-
   /// No description provided for @tips_login.
   ///
   /// In en, this message translates to:
@@ -326,7 +308,7 @@ abstract class AppLocalizations {
   /// No description provided for @register_to_login.
   ///
   /// In en, this message translates to:
-  /// **'Have an account? To'**
+  /// **'Have an account? To '**
   String get register_to_login;
 
   /// No description provided for @register.

@@ -26,21 +26,21 @@ class CollectionRepoImpl with ResultExt implements CollectionRepo {
   }
 
   @override
-  Future<PaginatedResp<Article>> getCollectArticles(
+  ResultFuture<PaginatedResp<Article>> getCollectArticles(
       {int page = 0, int pageSize = 10, bool forceRefresh = true}) async {
-    // return await guard(() async {
-    final result =
-    await _remoteDataSource.getCollectArticles(page: page, pageSize: pageSize);
-    return result
-        .toDomainModel<Article, ArticleModel>((e) => e.toDomainModel());
-    // });
+    return await guard(() async {
+      final result = await _remoteDataSource.getCollectArticles(
+          page: page, pageSize: pageSize);
+      return result
+          .toDomainModel<Article, ArticleModel>((e) => e.toDomainModel());
+    });
   }
 
   @override
-  ResultFuture<void> uncollectMyArticle({required int id,required int originId}) {
+  ResultFuture<void> uncollectMyArticle(
+      {required int id, required int originId}) {
     return guard(() {
       return _remoteDataSource.uncollectMyArticle(id, originId);
     });
   }
-
 }

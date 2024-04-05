@@ -1,6 +1,8 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_wanandroid2/core/services/injection_container.dart';
+import 'package:flutter_wanandroid2/core/usecase/usecase.dart';
+import 'package:flutter_wanandroid2/src/article/domain/entities/article.dart';
 import 'package:flutter_wanandroid2/src/collection/domain/usecases/collect_article.dart';
 import 'package:flutter_wanandroid2/src/collection/domain/usecases/get_collect_articles.dart';
 import 'package:flutter_wanandroid2/src/collection/domain/usecases/uncollect_article.dart';
@@ -26,8 +28,15 @@ class Collection extends _$Collection {
     return const CollectionInitial();
   }
 
-  // Future<PaginatedResp<Article>> getCollectArticles(
-  //     {int page, int pageSize});
+  Future<void> getCollectArticles({int page = 0, int pageSize = 10}) async {
+    state = const CollectionLoading();
+    final result = await _getCollectArticles(
+        PaginatedParams(page: page, pageSize: pageSize));
+    result.fold(
+        (failure) => state = CollectionError(failure.message),
+        (success) => state =
+            CollectionFetched(list: success.datas, hasMore: success.hasMore));
+  }
 
   Future<void> collectArticle(int id) async {
     state = const AddingToCollection();
@@ -49,6 +58,6 @@ class Collection extends _$Collection {
     final result = await _uncollectMyArticle(
         UncollectMyArticleParams(id: id, originId: originId));
     result.fold((failure) => state = CollectionError(failure.message),
-        (_) => state = const RemovedFromCollection());
+        (_) => state = RemovedFromCollection());
   }
 }
