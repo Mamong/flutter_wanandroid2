@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_wanandroid2/core/common/app/app_settings_provider.dart';
 import 'package:flutter_wanandroid2/core/common/app/current_user_provider.dart';
 import 'package:flutter_wanandroid2/core/utils/core_utils.dart';
@@ -36,10 +37,13 @@ class DashboardDrawer extends ConsumerWidget {
     });
 
     return Drawer(
-        child: ListView(children: <Widget>[
+        child: ListView(
+            padding: const EdgeInsets.only(top: 0.0),
+            children: <Widget>[
       UserAccountsDrawerHeader(
-        accountName: Text(user?.username ?? '登录'),
-        accountEmail: const Text(''),
+        currentAccountPictureSize: Size.square(200.w),
+        accountEmail: Text(user?.username ?? '登录'),
+        accountName: const Text(''),
         currentAccountPicture: GestureDetector(
             onTap: () {
               if (user == null) context.push('/login');

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_wanandroid2/core/utils/core_utils.dart';
 import 'package:flutter_wanandroid2/src/auth/presentation/app/riverpod/auth_provider.dart';
+import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 
 class LoginForm extends ConsumerStatefulWidget {
@@ -89,7 +90,7 @@ class _LoginFormState extends ConsumerState<LoginForm> {
                         },
                       );
                     }),
-                const SizedBox(height: 20),
+                const Gap(20),
                 ElevatedButton(
                     onPressed: authState is AuthLoading
                         ? null

@@ -5,7 +5,7 @@ class ArticleListItem extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final (source,ext) = ref.read(articleSourceProvider);
+    final (source, ext) = ref.read(articleSourceProvider);
 
     final index = ref.read(indexProvider);
     final article = ref
@@ -146,6 +146,7 @@ class ArticleBottom extends StatelessWidget {
             icon: Icon(
               Icons.access_time_filled,
               size: 50.w,
+              color: const Color(0xFFE0E0E0),
             )),
         Text(
           date,

@@ -6,19 +6,25 @@ import 'package:flutter_wanandroid2/core/common/widgets/loading_view.dart';
 import 'package:flutter_wanandroid2/src/guide/presentation/app/riverpod/guide_list_provider.dart';
 import 'package:flutter_wanandroid2/src/guide/presentation/widgets/guide_detail_section.dart';
 import 'package:gap/gap.dart';
+import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 class GuideDetailList extends ConsumerWidget {
-  const GuideDetailList({super.key, required this.controller});
+  const GuideDetailList(
+      {super.key,
+      required this.itemScrollController,
+      required this.itemPositionsListener});
 
-  final ScrollController controller;
+  final ItemScrollController itemScrollController;
+  final ItemPositionsListener itemPositionsListener;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final guide = ref.watch(guideListProvider);
     return guide.when(
         data: (data) {
-          return ListView.separated(
-            controller: controller,
+          return ScrollablePositionedList.separated(
+            itemScrollController: itemScrollController,
+            itemPositionsListener: itemPositionsListener,
             padding: EdgeInsets.all(25.w),
             itemCount: data.length,
             itemBuilder: (context, index) {

@@ -5,11 +5,8 @@ import 'package:flutter_wanandroid2/src/article/domain/entities/article.dart';
 import 'package:go_router/go_router.dart';
 
 class GuideDetailButton extends StatelessWidget {
-  const GuideDetailButton({
-    super.key,
-    required this.article});
+  const GuideDetailButton({super.key, required this.article});
 
-  // final int sectionId;
   final Article article;
 
   @override
@@ -29,7 +26,7 @@ class GuideDetailButton extends StatelessWidget {
                 },
                 child: Padding(
                   padding:
-                  EdgeInsets.symmetric(horizontal: 30.w, vertical: 6.w),
+                      EdgeInsets.symmetric(horizontal: 30.w, vertical: 6.w),
                   child: Text(
                     article.title,
                     style: TextStyle(
