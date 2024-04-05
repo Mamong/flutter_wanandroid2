@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_wanandroid2/core/common/app/app_settings_provider.dart';
 import 'package:flutter_wanandroid2/core/utils/enums/language_enum.dart';
 import 'package:go_router/go_router.dart';
@@ -30,8 +31,8 @@ class SettingsOptions extends ConsumerWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Container(
-                      width: 35,
-                      height: 35,
+                      width: 70.w,
+                      height: 70.w,
                       color: settings.themeColor,
                     ),
                     AnimatedRotation(
@@ -46,23 +47,26 @@ class SettingsOptions extends ConsumerWidget {
                   showColorsNotifier.value = expand;
                 },
                 children: [
-                  Wrap(
-                    spacing: 7.5,
-                    runSpacing: 7.5,
-                    children: themeColors
-                        .map((e) => GestureDetector(
-                              onTap: () {
-                                final setThemeProvider =
-                                    ref.read(appSettingsProvider.notifier);
-                                setThemeProvider.setThemeColor(e.color);
-                              },
-                              child: Container(
-                                width: 35,
-                                height: 35,
-                                color: Color(e.color),
-                              ),
-                            ))
-                        .toList(),
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(28.w, 0, 28.2, 15.w),
+                    child: Wrap(
+                      spacing: 15.w,
+                      runSpacing: 15.w,
+                      children: themeColors
+                          .map((e) => GestureDetector(
+                                onTap: () {
+                                  final setThemeProvider =
+                                      ref.read(appSettingsProvider.notifier);
+                                  setThemeProvider.setThemeColor(e.color);
+                                },
+                                child: Container(
+                                  width: 70.w,
+                                  height: 70.w,
+                                  color: Color(e.color),
+                                ),
+                              ))
+                          .toList(),
+                    ),
                   )
                 ],
               );

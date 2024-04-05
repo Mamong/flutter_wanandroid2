@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_wanandroid2/core/common/app/app_settings_provider.dart';
 import 'package:flutter_wanandroid2/core/res/styles/colors.dart';
 import 'package:flutter_wanandroid2/src/guide/presentation/app/riverpod/guide_list_provider.dart';
-import 'package:flutter_wanandroid2/src/guide/presentation/app/riverpod/selected_index_provider.dart';
+import 'package:flutter_wanandroid2/src/guide/presentation/app/riverpod/guide_select_provider.dart';
 
 class GuideHeaderItem extends ConsumerWidget {
   const GuideHeaderItem({super.key});
@@ -18,7 +18,7 @@ class GuideHeaderItem extends ConsumerWidget {
 
     /// only focus on selection change
     final selected =
-        ref.watch(selectedIndexProvider.select((value) => value == index));
+        ref.watch(guideSelectProvider.select((value) => value == index));
 
     return Container(
       height: 98.w,

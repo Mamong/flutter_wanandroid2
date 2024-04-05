@@ -79,7 +79,7 @@ class _LoginFormState extends ConsumerState<LoginForm> {
                                 : Icons.visibility),
                             onPressed: () {
                               obscurePasswordNotifier.value =
-                              !obscurePasswordNotifier.value;
+                                  !obscurePasswordNotifier.value;
                             },
                           ),
                         ),
@@ -95,27 +95,17 @@ class _LoginFormState extends ConsumerState<LoginForm> {
                     onPressed: authState is AuthLoading
                         ? null
                         : () {
-                      if ((formKey.currentState as FormState)
-                          .validate()) {
-                        ref.read(authProvider().notifier).login(
-                            username: unameController.text,
-                            password: passwordController.text);
-                      }
-                    },
+                            if ((formKey.currentState as FormState)
+                                .validate()) {
+                              ref.read(authProvider().notifier).login(
+                                  username: unameController.text,
+                                  password: passwordController.text);
+                            }
+                          },
                     child: authState is AuthLoading
                         ? const CircularProgressIndicator()
                         : const Text('登录')),
               ],
             )));
-  }
-}
-
-extension AsyncValueUI on AsyncValue {
-  void showSnackbarOnError(BuildContext context) {
-    if (!isRefreshing && hasError) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(error.toString())),
-      );
-    }
   }
 }

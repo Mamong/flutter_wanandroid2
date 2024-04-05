@@ -50,6 +50,7 @@ dependencies:
   cached_network_image: ^3.3.0
   webview_flutter: ^4.7.0
   scrollable_positioned_list: ^0.3.8
+  carousel_slider: ^4.2.1
 
   network:
     path: packages/network

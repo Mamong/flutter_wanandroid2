@@ -30,7 +30,6 @@ class HomeScreen extends StatelessWidget {
           child: ArticleList(
             header: const HomeBanner(),
           )),
-      // drawer: DrawerLayout(onNavigateTo: onNavigateTo,),
     );
   }
 }

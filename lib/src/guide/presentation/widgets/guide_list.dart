@@ -6,7 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_wanandroid2/core/common/widgets/error_view.dart';
 import 'package:flutter_wanandroid2/core/common/widgets/loading_view.dart';
 import 'package:flutter_wanandroid2/src/guide/presentation/app/riverpod/guide_list_provider.dart';
-import 'package:flutter_wanandroid2/src/guide/presentation/app/riverpod/selected_index_provider.dart';
+import 'package:flutter_wanandroid2/src/guide/presentation/app/riverpod/guide_select_provider.dart';
 import 'package:flutter_wanandroid2/src/guide/presentation/widgets/guide_header_item.dart';
 import 'package:flutter_wanandroid2/src/guide/presentation/widgets/guide_detail_list.dart';
 
@@ -39,7 +39,7 @@ class GuideListState extends ConsumerState<GuideList> {
 
   Future<void> handleLeftListPress(int index) async {
     isLeftPress = true;
-    ref.read(selectedIndexProvider.notifier).state = index;
+    ref.read(guideSelectProvider.notifier).state = index;
     // scroll to middle of screen
     await scrollTo(leftItemScrollController, index - 5);
     // scroll to top of screen
@@ -51,8 +51,8 @@ class GuideListState extends ConsumerState<GuideList> {
       return;
     }
     final (min, _) = getVisibleRange(rightItemScrollController);
-    if (ref.read(selectedIndexProvider) == min) return;
-    ref.read(selectedIndexProvider.notifier).state = min ?? 0;
+    if (ref.read(guideSelectProvider) == min) return;
+    ref.read(guideSelectProvider.notifier).state = min ?? 0;
     await scrollTo(leftItemScrollController, min ?? 0 - 5);
   }
 

@@ -30,10 +30,11 @@ class GuideDetailSection extends StatelessWidget {
           ),
           Gap(20.w),
           Wrap(
-            spacing: 15.w, // 主轴(水平)方向间距
-            runSpacing: 20.w, // 纵轴（垂直）方向间距
-            children:
-            section.articles.map((e) => GuideDetailButton(article: e)).toList(),
+            spacing: 15.w,
+            runSpacing: 20.w,
+            children: section.articles
+                .map((e) => GuideDetailButton(article: e))
+                .toList(),
           ),
         ],
       ),

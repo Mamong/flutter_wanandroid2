@@ -14,8 +14,8 @@ class ProjectScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
-
     final project = ref.watch(projectTreeProvider);
+
     return project.when(
         data: (section) {
           return DefaultTabController(
@@ -33,12 +33,10 @@ class ProjectScreen extends ConsumerWidget {
                 body: TabBarView(
                   children: section
                       .map((e) => KeepAliveWrapper(
-                              child: ProviderScope(
-                                  overrides: [
-                                articleSourceProvider.overrideWith(
-                                    (ref) => (ArticleSource.project, e.id))
-                              ],
-                                  child: ArticleList())))
+                              child: ProviderScope(overrides: [
+                            articleSourceProvider.overrideWith(
+                                (ref) => (ArticleSource.project, e.id))
+                          ], child: ArticleList())))
                       .toList(),
                 ),
               ));
