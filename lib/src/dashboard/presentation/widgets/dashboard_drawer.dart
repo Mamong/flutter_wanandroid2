@@ -2,13 +2,42 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_wanandroid2/core/common/app/current_user_provider.dart';
+import 'package:flutter_wanandroid2/core/utils/constants/constants.dart';
 import 'package:flutter_wanandroid2/core/utils/core_utils.dart';
 import 'package:flutter_wanandroid2/l10n/app_localizations.dart';
 import 'package:flutter_wanandroid2/src/auth/presentation/app/riverpod/auth_provider.dart';
 import 'package:go_router/go_router.dart';
+import 'package:share_plus/share_plus.dart';
 
 class DashboardDrawer extends ConsumerWidget {
   const DashboardDrawer({super.key});
+
+  void showLogoutAlert(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
+
+    showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text(l10n.tips),
+            content: Text(l10n.logout_confirm),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text(l10n.cancel),
+              ),
+              TextButton(
+                onPressed: () async {
+                  ref.read(authProvider().notifier).logout();
+                },
+                child: Text(l10n.confirm),
+              ),
+            ],
+          );
+        });
+  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -17,7 +46,7 @@ class DashboardDrawer extends ConsumerWidget {
       //{'/(drawer)/(tabs)', 'home', 'menu_home' },
       ('/coin-detail', Icons.trending_up, l10n.menu_points),
       ('/collection', Icons.favorite, l10n.menu_collection),
-      ('/websites', Icons.webhook, l10n.menu_websites),
+      ('/websites', Icons.language, l10n.menu_websites),
       ('/about', Icons.person, l10n.menu_about),
       ('share', Icons.share, l10n.menu_share),
       ('/settings', Icons.settings, l10n.menu_settings),
@@ -77,31 +106,9 @@ class DashboardDrawer extends ConsumerWidget {
                         return;
                       }
                       if (e.$1 == 'share') {
+                        Share.share(l10n.share_app_desc(Constants.downloadUrl));
                       } else if (e.$1 == 'logout') {
-                        showDialog(
-                            context: context,
-                            builder: (context) {
-                              return AlertDialog(
-                                title: Text(l10n.tips),
-                                content: Text(l10n.logout_confirm),
-                                actions: [
-                                  TextButton(
-                                    onPressed: () {
-                                      Navigator.of(context).pop();
-                                    },
-                                    child: Text(l10n.cancel),
-                                  ),
-                                  TextButton(
-                                    onPressed: () async {
-                                      ref
-                                          .read(authProvider().notifier)
-                                          .logout();
-                                    },
-                                    child: Text(l10n.confirm),
-                                  ),
-                                ],
-                              );
-                            });
+                        showLogoutAlert(context, ref);
                       } else {
                         context.push(e.$1);
                       }

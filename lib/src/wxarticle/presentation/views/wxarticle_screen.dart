@@ -36,7 +36,7 @@ class WXArticleScreen extends ConsumerWidget {
                               child: ProviderScope(overrides: [
                             articleSourceProvider.overrideWith(
                                 (ref) => (ArticleSource.wxarticle, e.id))
-                          ], child: ArticleList())))
+                          ], child: const ArticleList())))
                       .toList(),
                 ),
               ));

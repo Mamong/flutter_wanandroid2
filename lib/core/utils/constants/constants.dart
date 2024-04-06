@@ -13,4 +13,9 @@ abstract class Constants {
     Color(0xFF79CDCD),
     Color(0xFFBC8F8F)
   ];
+
+  static const gitHubStr = 'https://github.com/Mamong';
+  static const csdnStr = 'https://blog.csdn.net/Mamong';
+  static const downloadUrl = 'https://github.com/Mamong/Expo_WanAndroid';
+  static const qqEmail = '1054209736@qq.com';
 }

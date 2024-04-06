@@ -1,8 +1,8 @@
 import 'package:flutter_wanandroid2/core/utils/typedefs.dart';
 import 'package:flutter_wanandroid2/src/auth/data/datasources/auth_remote_data_src.dart';
-import 'package:flutter_wanandroid2/src/auth/data/model/account_model.dart';
-import 'package:flutter_wanandroid2/src/auth/data/model/user_model.dart';
+import 'package:flutter_wanandroid2/src/auth/data/models/account_model.dart';
 import 'package:flutter_wanandroid2/src/auth/domain/entities/account.dart';
+import 'package:flutter_wanandroid2/src/auth/data/models/user_model.dart';
 import 'package:flutter_wanandroid2/src/auth/domain/entities/user.dart';
 import 'package:flutter_wanandroid2/src/auth/domain/repos/auth_repo.dart';
 

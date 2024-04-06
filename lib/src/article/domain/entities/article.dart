@@ -1,8 +1,3 @@
-import 'package:json_annotation/json_annotation.dart';
-
-part 'article.g.dart';
-
-@JsonSerializable(createToJson: false)
 class Article {
   final bool isTop;
 
@@ -54,19 +49,11 @@ class Article {
     required this.zan,
     this.isTop = false,
   });
-
-  factory Article.fromJson(Map<String, dynamic> json) =>
-      _$ArticleFromJson(json);
-  static Article fromJsonModel(Object? json) =>
-      Article.fromJson(json as Map<String, dynamic>);
 }
 
-@JsonSerializable(createToJson: false)
 class Tag {
   final String name;
   final String url;
 
   Tag({required this.name, required this.url});
-
-  static const fromJson = _$TagFromJson;
 }

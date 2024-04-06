@@ -5,11 +5,12 @@ import 'package:flutter_wanandroid2/src/collection/presentation/app/collection_p
 import 'package:flutter_wanandroid2/src/collection/presentation/widgets/collection_list.dart';
 
 class CollectionScreen extends ConsumerWidget {
-  const CollectionScreen({super.key});
+  CollectionScreen({super.key});
+
+  final articleAdapterFamilyKey = GlobalKey();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final articleAdapterFamilyKey = GlobalKey();
     final l10n = AppLocalizations.of(context);
     return Scaffold(
       appBar: AppBar(

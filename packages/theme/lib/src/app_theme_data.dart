@@ -59,12 +59,6 @@ class LightAppThemeData extends AppThemeData {
             shadowColor: primarySwatch ?? Colors.blue,
             elevation: 1,
             foregroundColor: Colors.white),
-        iconButtonTheme: IconButtonThemeData(
-            style: IconButton.styleFrom(
-          minimumSize: const Size(30, 30),
-          padding: EdgeInsets.zero,
-          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-        )),
         // drawerTheme: DrawerThemeData(
         //   backgroundColor: Colors.white,
         // ),

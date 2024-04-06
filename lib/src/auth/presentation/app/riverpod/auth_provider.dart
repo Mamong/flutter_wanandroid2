@@ -30,11 +30,10 @@ class Auth extends _$Auth {
 
   Future<void> getUser() async {
     state = const GettingUserData();
-    final result =
-    await _getUser();
+    final result = await _getUser();
     result.fold(
-          (failure) => state = AuthError(failure.message),
-          (user) {
+      (failure) => state = AuthError(failure.message),
+      (user) {
         ref.read(currentUserProvider.notifier).setUser(user.userInfo);
         state = const FetchedUser();
       },
@@ -73,11 +72,10 @@ class Auth extends _$Auth {
 
   Future<void> logout() async {
     state = const AuthLoading();
-    final result =
-    await _logout();
+    final result = await _logout();
     result.fold(
-          (failure) => state = AuthError(failure.message),
-          (user) {
+      (failure) => state = AuthError(failure.message),
+      (user) {
         ref.read(currentUserProvider.notifier).setUser(null);
         state = const LoggedOut();
       },

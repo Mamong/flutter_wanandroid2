@@ -1,11 +1,13 @@
 import 'package:flutter_wanandroid2/src/article/domain/entities/article.dart';
+import 'package:flutter_wanandroid2/src/article/features/search/domain/entities/hotkey.dart';
 import 'package:flutter_wanandroid2/src/article/domain/entities/paginated_resp.dart';
 
 abstract class ArticleRepo {
-  Future<PaginatedResp<Article>> getArticleList(
-      {int page, int pageSize});
+  Future<PaginatedResp<Article>> getArticleList({int page, int pageSize});
 
   Future<List<Article>> getTopList();
+
+  Future<List<Hotkey>> getHotkeys();
 
   Future<PaginatedResp<Article>> getHierarchyArticleList(
       {int page, int pageSize, required int cid});

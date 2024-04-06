@@ -23,7 +23,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get menu_about => 'About author';
 
   @override
-  String get about_desc => 'wanAndroid client based on Facebook react native';
+  String get about_desc => 'wanAndroid client based on Google flutter';
 
   @override
   String get about_email => 'Email';
@@ -69,7 +69,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String share_app_desc(Object url) {
-    return 'Share WanAndroid application developed with react native, Click to download:$url';
+    return 'Share WanAndroid application developed with flutter, Click to download:$url';
   }
 
   @override

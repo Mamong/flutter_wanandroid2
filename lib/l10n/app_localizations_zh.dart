@@ -23,7 +23,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get menu_about => '关于作者';
 
   @override
-  String get about_desc => '基于Facebook React-Native的玩安卓客户端';
+  String get about_desc => '基于Google Flutter的玩安卓客户端';
 
   @override
   String get about_email => '邮箱';
@@ -69,7 +69,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String share_app_desc(Object url) {
-    return '分享一个使用React Native开发的玩安卓应用, 点击下载：$url';
+    return '分享一个使用Flutter开发的玩安卓应用, 点击下载：$url';
   }
 
   @override
@@ -177,7 +177,7 @@ class AppLocalizationsZhCn extends AppLocalizationsZh {
   String get menu_about => '关于作者';
 
   @override
-  String get about_desc => '基于Facebook React-Native的玩安卓客户端';
+  String get about_desc => '基于Google Flutter的玩安卓客户端';
 
   @override
   String get about_email => '邮箱';
@@ -223,7 +223,7 @@ class AppLocalizationsZhCn extends AppLocalizationsZh {
 
   @override
   String share_app_desc(Object url) {
-    return '分享一个使用React Native开发的玩安卓应用, 点击下载：$url';
+    return '分享一个使用Flutter开发的玩安卓应用, 点击下载：$url';
   }
 
   @override
@@ -331,7 +331,7 @@ class AppLocalizationsZhHk extends AppLocalizationsZh {
   String get menu_about => '關於作者';
 
   @override
-  String get about_desc => '基於Facebook React-Native的玩安卓用戶端';
+  String get about_desc => '基於Google Flutter的玩安卓用戶端';
 
   @override
   String get about_email => '郵箱';
@@ -377,7 +377,7 @@ class AppLocalizationsZhHk extends AppLocalizationsZh {
 
   @override
   String share_app_desc(Object url) {
-    return '分享一個使用React Native開發的玩安卓應用，點擊下載：$url';
+    return '分享一個使用Flutter開發的玩安卓應用，點擊下載：$url';
   }
 
   @override

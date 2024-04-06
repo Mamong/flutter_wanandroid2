@@ -1,9 +1,4 @@
-import 'package:json_annotation/json_annotation.dart';
-
-part 'tree.g.dart';
-
-@JsonSerializable(createToJson: false)
-class Tree{
+class Tree {
   final String author;
   final List<Tree> children;
   final int courseId;
@@ -17,20 +12,17 @@ class Tree{
   final int type;
   final bool userControlSetTop;
 
-  const Tree({
-    required this.author,
-    required this.children,
-    required this.courseId,
-    required this.cover,
-    required this.desc,
-    required this.id,
-    required this.lisense,
-    required this.lisenseLink,
-    required this.name,
-    required this.parentChapterId,
-    required this.type,
-    required this.userControlSetTop});
-
-  factory Tree.fromJson(Map<String, dynamic> json) =>
-      _$TreeFromJson(json);
+  const Tree(
+      {required this.author,
+      required this.children,
+      required this.courseId,
+      required this.cover,
+      required this.desc,
+      required this.id,
+      required this.lisense,
+      required this.lisenseLink,
+      required this.name,
+      required this.parentChapterId,
+      required this.type,
+      required this.userControlSetTop});
 }

@@ -1,6 +1,6 @@
-import 'package:flutter_wanandroid2/src/article/data/model/article_model.dart';
-import 'package:flutter_wanandroid2/src/article/data/model/hotkey_model.dart';
-import 'package:flutter_wanandroid2/src/article/data/model/paginated_resp_model.dart';
+import 'package:flutter_wanandroid2/src/article/data/models/article_model.dart';
+import 'package:flutter_wanandroid2/src/article/features/search/data/models/hotkey_model.dart';
+import 'package:flutter_wanandroid2/src/article/data/models/paginated_resp_model.dart';
 import 'package:network/network.dart';
 
 abstract class ArticleRemoteDataSrc {
@@ -9,7 +9,7 @@ abstract class ArticleRemoteDataSrc {
       {int page, int pageSize});
 
   /// 1.4 hotkey
-  Future<List<HotkeyModel>> getSearchHotKey();
+  Future<List<HotkeyModel>> getHotkeys();
 
   /// index top articles
   Future<List<ArticleModel>> getTopList();
@@ -47,7 +47,7 @@ class ArticleRemoteDataSrcImpl implements ArticleRemoteDataSrc {
 
   /// 1.4 hotkey
   @override
-  Future<List<HotkeyModel>> getSearchHotKey() async {
+  Future<List<HotkeyModel>> getHotkeys() async {
     final responseData = await _httpService.get('/hotkey/json');
     return (responseData.data as List<dynamic>)
         .map((e) => HotkeyModel.fromJson(e))
@@ -98,8 +98,8 @@ class ArticleRemoteDataSrcImpl implements ArticleRemoteDataSrc {
       int pageSize = 10,
       required String k,
       bool forceRefresh = true}) async {
-    final responseData = await _httpService.get('/article/query/$page/json',
-        queryParameters: {"page_size": pageSize}, forceRefresh: forceRefresh);
+    final responseData = await _httpService.post('/article/query/$page/json',
+        data: {"k": k, "page_size": pageSize});
     return PaginatedRespModel<ArticleModel>.fromJson(
         responseData.data, ArticleModel.fromJsonModel);
   }
@@ -110,8 +110,10 @@ class ArticleRemoteDataSrcImpl implements ArticleRemoteDataSrc {
       int pageSize = 10,
       required int id,
       bool forceRefresh = true}) async {
-    final responseData = await _httpService.get('/wxarticle/list/$id/$page/json',
-        queryParameters: {"page_size": pageSize}, forceRefresh: forceRefresh);
+    final responseData = await _httpService.get(
+        '/wxarticle/list/$id/$page/json',
+        queryParameters: {"page_size": pageSize},
+        forceRefresh: forceRefresh);
     return PaginatedRespModel<ArticleModel>.fromJson(
         responseData.data, ArticleModel.fromJsonModel);
   }

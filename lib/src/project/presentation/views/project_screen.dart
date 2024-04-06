@@ -36,7 +36,7 @@ class ProjectScreen extends ConsumerWidget {
                               child: ProviderScope(overrides: [
                             articleSourceProvider.overrideWith(
                                 (ref) => (ArticleSource.project, e.id))
-                          ], child: ArticleList())))
+                          ], child: const ArticleList())))
                       .toList(),
                 ),
               ));

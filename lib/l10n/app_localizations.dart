@@ -134,7 +134,7 @@ abstract class AppLocalizations {
   /// No description provided for @about_desc.
   ///
   /// In en, this message translates to:
-  /// **'wanAndroid client based on Facebook react native'**
+  /// **'wanAndroid client based on Google flutter'**
   String get about_desc;
 
   /// No description provided for @about_email.
@@ -224,7 +224,7 @@ abstract class AppLocalizations {
   /// No description provided for @share_app_desc.
   ///
   /// In en, this message translates to:
-  /// **'Share WanAndroid application developed with react native, Click to download:{url}'**
+  /// **'Share WanAndroid application developed with flutter, Click to download:{url}'**
   String share_app_desc(Object url);
 
   /// No description provided for @tips.

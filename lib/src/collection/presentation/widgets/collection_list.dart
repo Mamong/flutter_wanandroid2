@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:gap/gap.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_wanandroid2/core/common/app/current_user_provider.dart';
 import 'package:flutter_wanandroid2/core/common/widgets/error_view.dart';
 import 'package:flutter_wanandroid2/src/article/presentation/app/article_riverpod_provider/article_source_provider.dart';
 import 'package:flutter_wanandroid2/src/article/presentation/widgets/article_list.dart';
-import 'package:gap/gap.dart';
-import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:flutter_wanandroid2/core/common/widgets/empty_view.dart';
 import 'package:flutter_wanandroid2/core/common/widgets/loading_view.dart';
 import 'package:flutter_wanandroid2/core/utils/core_utils.dart';
@@ -18,10 +17,10 @@ import 'package:flutter_wanandroid2/src/collection/presentation/app/collection_p
 
 class CollectionList extends ConsumerStatefulWidget {
   const CollectionList(
-      {super.key,
-      required this.articleAdapterFamilyKey,
+      {required this.articleAdapterFamilyKey,
       required this.fetchRequest,
-      this.firstPage = 0});
+      this.firstPage = 0,
+      super.key});
 
   final GlobalKey articleAdapterFamilyKey;
   final ValueChanged<int> fetchRequest;

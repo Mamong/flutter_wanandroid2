@@ -15,6 +15,7 @@ class LanguageOptions extends ConsumerWidget {
                 context: context,
                 tiles: Language.values
                     .map((e) => ListTile(
+                          tileColor: Colors.white,
                           title: Text(e.title),
                           trailing: e.code == settings.language
                               ? const Icon(Icons.check)

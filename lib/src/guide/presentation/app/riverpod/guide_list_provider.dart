@@ -1,5 +1,5 @@
 import 'package:flutter_wanandroid2/core/services/injection_container.dart';
-import 'package:flutter_wanandroid2/src/home/domain/entities/navi.dart';
+import 'package:flutter_wanandroid2/src/guide/domain/entities/navi.dart';
 import 'package:flutter_wanandroid2/src/home/domain/usecases/get_guide_list.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_wanandroid2/core/res/styles/button.dart';
 import 'package:flutter_wanandroid2/core/res/styles/colors.dart';
 import 'package:flutter_wanandroid2/src/article/domain/entities/article.dart';
 import 'package:flutter_wanandroid2/src/article/presentation/app/article_riverpod_provider/article_source_provider.dart';
@@ -20,19 +21,30 @@ part 'article_list_item.dart';
 
 final indexProvider = StateProvider<int>((ref) => 0);
 
-class ArticleList extends ConsumerWidget {
-  ArticleList({super.key, this.header});
+class ArticleList extends ConsumerStatefulWidget {
+  const ArticleList({super.key, this.header});
 
   final Widget? header;
 
+  @override
+  ConsumerState<ConsumerStatefulWidget> createState() => _ArticleListState();
+}
+
+class _ArticleListState extends ConsumerState<ArticleList> {
   final RefreshController _refreshController =
       RefreshController(initialRefresh: false);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  void dispose() {
+    _refreshController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final (source, ext) = ref.read(articleSourceProvider);
     final articleList = ref.watch(ArticleAdapterProvider(source, ext));
-    final hasHeader = header != null;
+    final hasHeader = widget.header != null;
 
     ref.listen(ArticleAdapterProvider(source, ext), (_, next) {
       if (next.isLoading) {
@@ -87,7 +99,7 @@ class ArticleList extends ConsumerWidget {
               child: ListView.separated(
                   itemBuilder: (BuildContext context, int index) {
                     if (index == 0 && hasHeader) {
-                      return header;
+                      return widget.header;
                     }
                     print("=====$index");
                     return ProviderScope(overrides: [

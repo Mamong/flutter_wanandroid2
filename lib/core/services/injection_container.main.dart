@@ -5,6 +5,7 @@ final sl = GetIt.instance;
 Future<void> init() async {
   await _cacheInit();
   await _authInit();
+  await _userInit();
   await _homeInit();
   await _articleInit();
   await _collectionInit();
@@ -28,20 +29,28 @@ Future<void> _cacheInit() async {
   Cache.instance.user = user;
   Cache.instance.language = language;
   Cache.instance.themeColor = Color(themeColor);
-
 }
 
 Future<void> _authInit() async {
   sl
-    ..registerLazySingleton(() => GetUser(sl()))
     ..registerLazySingleton(() => Logout(sl()))
     ..registerLazySingleton(() => Login(sl()))
     ..registerLazySingleton(() => Register(sl()))
+    ..registerLazySingleton(() => GetUser(sl()))
     ..registerLazySingleton<AuthRepo>(() => AuthRepoImpl(sl()))
     ..registerLazySingleton<AuthRemoteDataSrc>(
         () => AuthRemoteDataSrcImpl(sl()))
     ..registerLazySingleton<HttpService>(
         () => DioNetworkService(sl<HiveStorageService>()));
+}
+
+Future<void> _userInit() async {
+  sl
+    ..registerLazySingleton(() => GetCoinInfo(sl()))
+    ..registerLazySingleton(() => GetCoinDetails(sl()))
+    ..registerLazySingleton<CoinRepo>(() => CoinRepoImpl(sl()))
+    ..registerLazySingleton<CoinRemoteDataSrc>(
+        () => CoinRemoteDataSrcImpl(sl()));
 }
 
 Future<void> _homeInit() async {
@@ -60,11 +69,11 @@ Future<void> _articleInit() async {
   sl
     ..registerLazySingleton(() => GetArticles(sl()))
     ..registerLazySingleton(() => GetTops(sl()))
+    ..registerLazySingleton(() => GetHotkeys(sl()))
     ..registerLazySingleton(() => GetHierarchyArticles(sl()))
     ..registerLazySingleton(() => GetProjectArticles(sl()))
     ..registerLazySingleton(() => GetSearchArticles(sl()))
     ..registerLazySingleton(() => GetWxArticles(sl()))
-
     ..registerLazySingleton<ArticleRepo>(() => ArticleRepoImpl(sl()))
     ..registerLazySingleton<ArticleRemoteDataSrc>(
         () => ArticleRemoteDataSrcImpl(sl()));

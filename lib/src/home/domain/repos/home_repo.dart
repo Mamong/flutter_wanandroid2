@@ -1,10 +1,9 @@
 import 'package:flutter_wanandroid2/src/home/domain/entities/banner.dart';
-import 'package:flutter_wanandroid2/src/home/domain/entities/navi.dart';
+import 'package:flutter_wanandroid2/src/guide/domain/entities/navi.dart';
 import 'package:flutter_wanandroid2/src/home/domain/entities/tree.dart';
 import 'package:flutter_wanandroid2/src/home/domain/entities/website.dart';
 
 abstract class HomeRepo {
-
   /// 1.2 index banner
   Future<List<Banner>> getBanner();
 

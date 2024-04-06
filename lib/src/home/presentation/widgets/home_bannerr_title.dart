@@ -15,7 +15,7 @@ class HomeBannerTitle extends ConsumerWidget {
     return Container(
         height: 50.w,
         padding: EdgeInsets.symmetric(horizontal: 20.w),
-        decoration: BoxDecoration(color: Colors.black.withAlpha(85)),
+        color: Colors.black.withAlpha(85),
         child: DefaultTextStyle(
           style: TextStyle(color: Colors.white, fontSize: 28.w),
           child: Row(

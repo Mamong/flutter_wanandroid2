@@ -10,9 +10,9 @@ import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 class GuideDetailList extends ConsumerWidget {
   const GuideDetailList(
-      {super.key,
-      required this.itemScrollController,
-      required this.itemPositionsListener});
+      {required this.itemScrollController,
+      required this.itemPositionsListener,
+      super.key});
 
   final ItemScrollController itemScrollController;
   final ItemPositionsListener itemPositionsListener;

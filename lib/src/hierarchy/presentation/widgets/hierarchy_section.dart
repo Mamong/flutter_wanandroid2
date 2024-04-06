@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_wanandroid2/core/res/styles/colors.dart';
-import 'package:flutter_wanandroid2/src/hierarchy/presentation/widgets/label_button.dart';
+import 'package:flutter_wanandroid2/core/utils/constants/constants.dart';
+import 'package:flutter_wanandroid2/core/common/widgets/label_button.dart';
 import 'package:flutter_wanandroid2/src/home/domain/entities/tree.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 
 class HierarchySection extends StatelessWidget {
   const HierarchySection({super.key, required this.section});
@@ -32,10 +34,18 @@ class HierarchySection extends StatelessWidget {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 20.w),
             child: Wrap(
-              spacing: 15.w, // 主轴(水平)方向间距
-              runSpacing: 20.w, // 纵轴（垂直）方向间距
-              children:
-                  section.children.map((e) => LabelButton(item: e)).toList(),
+              spacing: 15.w,
+              runSpacing: 20.w,
+              children: section.children
+                  .map((e) => LabelButton(
+                        title: e.name,
+                        color: Constants.chapterBgColor[e.id % 10],
+                        onTap: () {
+                          context.push(
+                              "/hierarchy/${e.parentChapterId}?cateId=${e.id}");
+                        },
+                      ))
+                  .toList(),
             ),
           ),
         ],

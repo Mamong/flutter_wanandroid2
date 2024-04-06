@@ -1,5 +1,5 @@
-import 'package:flutter_wanandroid2/src/auth/data/model/account_model.dart';
-import 'package:flutter_wanandroid2/src/auth/data/model/user_model.dart';
+import 'package:flutter_wanandroid2/src/auth/data/models/account_model.dart';
+import 'package:flutter_wanandroid2/src/auth/data/models/user_model.dart';
 import 'package:network/network.dart';
 
 abstract class AuthRemoteDataSrc {
@@ -21,7 +21,7 @@ class AuthRemoteDataSrcImpl implements AuthRemoteDataSrc {
   final HttpService _httpService;
 
   @override
-  Future<AccountModel> getUser() async{
+  Future<AccountModel> getUser() async {
     final responseData = await _httpService.get('/user/lg/userinfo/json');
     return AccountModel.fromJson(responseData.data);
   }

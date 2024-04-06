@@ -118,7 +118,7 @@ final router = GoRouter(
           path: 'language',
           parentNavigatorKey: rootNavigatorKey,
           builder: (BuildContext context, GoRouterState state) {
-            return const SettingsLanguageView();
+            return const SettingsLanguageScreen();
           },
         ),
       ],
@@ -153,9 +153,42 @@ final router = GoRouter(
       path: '/collection',
       parentNavigatorKey: rootNavigatorKey,
       builder: (BuildContext context, GoRouterState state) {
-        return const CollectionScreen();
+        return CollectionScreen();
       },
       routes: const <RouteBase>[],
+    ),
+    GoRoute(
+      path: '/coin-detail',
+      parentNavigatorKey: rootNavigatorKey,
+      builder: (BuildContext context, GoRouterState state) {
+        return const CoinDetailsScreen();
+      },
+      routes: const <RouteBase>[],
+    ),
+    GoRoute(
+      path: '/about',
+      parentNavigatorKey: rootNavigatorKey,
+      builder: (BuildContext context, GoRouterState state) {
+        return const AboutScreen();
+      },
+      routes: const <RouteBase>[],
+    ),
+    GoRoute(
+      path: '/search',
+      parentNavigatorKey: rootNavigatorKey,
+      builder: (BuildContext context, GoRouterState state) {
+        return SearchScreen();
+      },
+      routes: <RouteBase>[
+        GoRoute(
+          path: 'result',
+          parentNavigatorKey: rootNavigatorKey,
+          builder: (BuildContext context, GoRouterState state) {
+            final key = state.uri.queryParameters["key"] ?? "";
+            return SearchResultScreen(k: key);
+          },
+        ),
+      ],
     ),
   ],
 );

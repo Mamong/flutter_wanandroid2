@@ -5,7 +5,7 @@
   "search_hotkey": "熱門搜索",
   "tips_search_keywords": "請輸入搜索關鍵字",
   "menu_about": "關於作者",
-  "about_desc": "基於Facebook React-Native的玩安卓用戶端",
+  "about_desc": "基於Google Flutter的玩安卓用戶端",
   "about_email": "郵箱",
   "about_bottom": "本項目僅供學習使用，不得用作商業目的",
   "menu_points_details": "積分明細",
@@ -20,7 +20,7 @@
   "menu_share": "分享",
   "menu_settings": "設定",
   "menu_logout": "登出",
-  "share_app_desc": "分享一個使用React Native開發的玩安卓應用，點擊下載：{url}",
+  "share_app_desc": "分享一個使用Flutter開發的玩安卓應用，點擊下載：{url}",
   "@share_app_desc": {
     "placeholders": {
       "url": {}

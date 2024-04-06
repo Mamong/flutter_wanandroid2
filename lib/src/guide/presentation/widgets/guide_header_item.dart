@@ -22,7 +22,7 @@ class GuideHeaderItem extends ConsumerWidget {
 
     return Container(
       height: 98.w,
-      decoration: selected ? const BoxDecoration(color: Colors.white) : null,
+      color: selected ? Colors.white : null,
       child: Center(
           child: Text(
         section.name,

@@ -1,13 +1,10 @@
-
-
 import 'package:flutter_wanandroid2/src/home/data/models/banner_model.dart';
-import 'package:flutter_wanandroid2/src/home/data/models/navi_model.dart';
+import 'package:flutter_wanandroid2/src/guide/data/models/navi_model.dart';
 import 'package:flutter_wanandroid2/src/home/data/models/tree_model.dart';
 import 'package:flutter_wanandroid2/src/home/data/models/website_model.dart';
 import 'package:network/network.dart';
 
 abstract class HomeRemoteDataSrc {
-
   /// 1.2 index banner
   Future<List<BannerModel>> getBanner();
 
@@ -78,11 +75,10 @@ class HomeRemoteDataSrcImpl implements HomeRemoteDataSrc {
   }
 
   @override
-  Future<List<TreeModel>> getWXArticleTree() async{
+  Future<List<TreeModel>> getWXArticleTree() async {
     final responseData = await _httpService.get('/wxarticle/chapters/json');
     return (responseData.data as List<dynamic>)
         .map((e) => TreeModel.fromJson(e))
         .toList();
   }
-
 }

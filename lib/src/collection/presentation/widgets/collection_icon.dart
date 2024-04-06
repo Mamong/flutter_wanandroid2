@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_wanandroid2/core/common/app/current_user_provider.dart';
+import 'package:flutter_wanandroid2/core/res/styles/button.dart';
 import 'package:flutter_wanandroid2/core/utils/core_utils.dart';
 import 'package:flutter_wanandroid2/src/article/presentation/app/article_riverpod_provider/article_source_provider.dart';
 import 'package:flutter_wanandroid2/src/auth/presentation/app/riverpod/auth_provider.dart';
@@ -17,7 +18,7 @@ class CollectionIcon extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final (source, ext) = ref.read(articleSourceProvider);
+    final (source, _) = ref.read(articleSourceProvider);
 
     final isCollect = ref.watch(currentUserProvider.select((user) =>
         user?.collectIds.any((element) =>
@@ -35,6 +36,7 @@ class CollectionIcon extends ConsumerWidget {
     });
 
     return IconButton(
+        style: ButtonStyles.shrinkIconButton(const Size(30, 30)),
         onPressed: () {
           if (source == ArticleSource.collection) {
             ref

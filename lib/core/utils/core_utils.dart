@@ -1,9 +1,7 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_wanandroid2/core/extensions/context_ext.dart';
 import 'package:flutter_wanandroid2/core/extensions/textstyle_ext.dart';
-import 'package:flutter_wanandroid2/core/res/styles/colors.dart';
 import 'package:flutter_wanandroid2/core/res/styles/text.dart';
 import 'package:flutter_wanandroid2/core/services/router.dart';
 
@@ -11,13 +9,13 @@ abstract class CoreUtils {
   const CoreUtils();
 
   static void showSnackBar(
-      BuildContext context, {
-        required String message,
-        Color? backgroundColour,
-      }) {
+    BuildContext context, {
+    required String message,
+    Color? backgroundColour,
+  }) {
     SchedulerBinding.instance.addPostFrameCallback((_) {
       final snackBar = SnackBar(
-        backgroundColor: backgroundColour ?? Colours.lightThemePrimaryColour,
+        backgroundColor: backgroundColour ?? Theme.of(context).primaryColor,
         behavior: SnackBarBehavior.floating,
         content: Text(
           message,
@@ -51,7 +49,7 @@ abstract class CoreUtils {
     // Limit the duration to a reasonable maximum
     const int maxDurationMilliseconds = 5000; // 5 seconds
     final int finalDuration =
-    durationInMilliseconds.clamp(1000, maxDurationMilliseconds);
+        durationInMilliseconds.clamp(1000, maxDurationMilliseconds);
 
     return Duration(milliseconds: finalDuration);
   }
@@ -63,10 +61,10 @@ abstract class CoreUtils {
   }
 
   static Color adaptiveColour(
-      BuildContext context, {
-        required Color lightModeColour,
-        required Color darkModeColour,
-      }) {
+    BuildContext context, {
+    required Color lightModeColour,
+    required Color darkModeColour,
+  }) {
     return context.isDarkMode ? darkModeColour : lightModeColour;
   }
 

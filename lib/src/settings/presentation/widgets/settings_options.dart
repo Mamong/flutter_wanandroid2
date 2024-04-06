@@ -28,6 +28,8 @@ class SettingsOptions extends ConsumerWidget {
             valueListenable: showColorsNotifier,
             builder: (_, value, __) {
               return ExpansionTile(
+                backgroundColor: Colors.white,
+                collapsedBackgroundColor: Colors.white,
                 leading: const Icon(Icons.color_lens),
                 title: Text(l10n.menu_theme),
                 trailing: Row(
@@ -75,6 +77,7 @@ class SettingsOptions extends ConsumerWidget {
               );
             }),
         ListTile(
+          tileColor: Colors.white,
           leading: const Icon(Icons.language),
           title: Text(l10n.language),
           trailing: Row(

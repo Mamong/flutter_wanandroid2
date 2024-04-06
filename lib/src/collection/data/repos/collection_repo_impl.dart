@@ -1,6 +1,6 @@
 import 'package:flutter_wanandroid2/core/utils/typedefs.dart';
-import 'package:flutter_wanandroid2/src/article/data/model/article_model.dart';
-import 'package:flutter_wanandroid2/src/article/data/model/paginated_resp_model.dart';
+import 'package:flutter_wanandroid2/src/article/data/models/article_model.dart';
+import 'package:flutter_wanandroid2/src/article/data/models/paginated_resp_model.dart';
 import 'package:flutter_wanandroid2/src/article/domain/entities/article.dart';
 import 'package:flutter_wanandroid2/src/article/domain/entities/paginated_resp.dart';
 import 'package:flutter_wanandroid2/src/collection/data/datasources/collection_remote_data_src.dart';
