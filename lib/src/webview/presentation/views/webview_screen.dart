@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -13,6 +14,7 @@ class WebViewScreen extends StatefulWidget {
 
 class _WebViewState extends State<WebViewScreen> {
   late WebViewController controller;
+  final loadingNotifier = ValueNotifier(false);
 
   @override
   void initState() {
@@ -23,12 +25,13 @@ class _WebViewState extends State<WebViewScreen> {
       ..setNavigationDelegate(
         NavigationDelegate(
           onProgress: (int progress) {
-            // Update loading bar.
             print("progress:$progress");
           },
-          onPageStarted: (String url) {},
+          onPageStarted: (String url) {
+            loadingNotifier.value = true;
+          },
           onPageFinished: (String url) {
-            print("%url finished");
+            loadingNotifier.value = false;
           },
           onWebResourceError: (WebResourceError error) {
             print(error.description);
@@ -44,7 +47,22 @@ class _WebViewState extends State<WebViewScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(widget.title)),
+      appBar: AppBar(
+          title: Row(children: [
+        ValueListenableBuilder(
+            valueListenable: loadingNotifier,
+            builder: (_, value, __) => Visibility(
+                visible: value,
+                child: const CupertinoActivityIndicator(
+                  color: Colors.white,
+                  animating: true,
+                ))),
+        Expanded(
+            child: Text(
+          widget.title,
+          style: const TextStyle(fontSize: 14, overflow: TextOverflow.ellipsis),
+        ))
+      ])),
       body: WebViewWidget(controller: controller),
     );
   }
