@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_wanandroid2/l10n/app_localizations.dart';
-
-import '../widgets/login_form.dart';
+import 'package:flutter_wanandroid2/src/auth/presentation/widgets/login_form.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});

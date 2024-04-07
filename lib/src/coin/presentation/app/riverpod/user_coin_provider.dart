@@ -7,6 +7,7 @@ import 'package:flutter_wanandroid2/src/coin/domain/entities/coin_detail.dart';
 import 'package:flutter_wanandroid2/src/coin/domain/entities/coin_info.dart';
 import 'package:flutter_wanandroid2/src/coin/domain/usecases/get_coin_details.dart';
 import 'package:flutter_wanandroid2/src/coin/domain/usecases/get_coin_info.dart';
+import 'package:network/network.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'user_coin_provider.g.dart';
@@ -29,7 +30,7 @@ class UserCoin extends _$UserCoin {
     final result =
         await _getCoinDetails(PaginatedParams(page: page, pageSize: pageSize));
     result.fold(
-      (failure) => state = UserCoinError(failure.message),
+      (failure) => state = UserCoinError(failure),
       (result) {
         state = FetchedUserCoinDetails(result);
       },
@@ -40,7 +41,7 @@ class UserCoin extends _$UserCoin {
     state = const GettingUserCoinInfo();
     final result = await _getCoinInfo();
     result.fold(
-      (failure) => state = UserCoinError(failure.message),
+      (failure) => state = UserCoinError(failure),
       (result) {
         state = FetchedUserCoinInfo(result);
       },

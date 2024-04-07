@@ -2,12 +2,12 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 import 'package:flutter_wanandroid2/core/res/styles/colors.dart';
 import 'package:flutter_wanandroid2/core/utils/core_utils.dart';
 import 'package:flutter_wanandroid2/l10n/app_localizations.dart';
 import 'package:flutter_wanandroid2/src/auth/presentation/app/riverpod/auth_provider.dart';
-import 'package:gap/gap.dart';
-import 'package:go_router/go_router.dart';
 
 class RegisterForm extends ConsumerStatefulWidget {
   const RegisterForm({super.key});

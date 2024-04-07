@@ -3,12 +3,11 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_wanandroid2/core/common/widgets/error_view.dart';
-import 'package:flutter_wanandroid2/core/common/widgets/loading_view.dart';
+import 'package:go_router/go_router.dart';
+import 'package:flutter_wanandroid2/core/common/widgets/indicators.dart';
 import 'package:flutter_wanandroid2/src/home/presentation/app/riverpod/banner_provider.dart';
 import 'package:flutter_wanandroid2/src/home/presentation/app/riverpod/banner_select_provider.dart';
 import 'package:flutter_wanandroid2/src/home/presentation/widgets/home_bannerr_title.dart';
-import 'package:go_router/go_router.dart';
 
 class HomeBanner extends ConsumerWidget {
   const HomeBanner({super.key});
@@ -58,7 +57,10 @@ class HomeBanner extends ConsumerWidget {
             ],
           );
         },
-        error: (error, stack) => const ErrorView(),
+        error: (error, stack) => ErrorView(
+              error: error,
+              onPressed: () => ref.invalidate(bannerProvider),
+            ),
         loading: () => const LoadingView());
   }
 }

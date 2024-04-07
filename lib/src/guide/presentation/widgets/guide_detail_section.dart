@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gap/gap.dart';
 import 'package:flutter_wanandroid2/core/res/styles/colors.dart';
 import 'package:flutter_wanandroid2/src/guide/presentation/widgets/guide_detail_button.dart';
 import 'package:flutter_wanandroid2/src/guide/domain/entities/navi.dart';
-import 'package:gap/gap.dart';
 
 class GuideDetailSection extends StatelessWidget {
   const GuideDetailSection({super.key, required this.section});

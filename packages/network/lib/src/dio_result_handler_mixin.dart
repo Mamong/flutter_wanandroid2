@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:developer';
-import 'dart:io';
 
 import 'package:dio/dio.dart';
 
@@ -32,41 +31,43 @@ mixin ResultHandlerMixin on HttpService {
           data: obj["data"],
         );
       } else {
-        throw AppException(
+        throw ServerException(
           message: obj["errorMsg"],
-          statusCode: obj["errorCode"],
+          statusCode: obj["errorCode"] == -1001
+              ? ErrorType.notLogin
+              : ErrorType.businessFailed,
           identifier: endpoint,
         );
       }
-    } on AppException{
+    } on ServerException {
       rethrow;
     } catch (e) {
       String message = '';
       String identifier = '';
-      int statusCode = 0;
+      ErrorType statusCode = ErrorType.none;
       log(e.runtimeType.toString());
       switch (e.runtimeType) {
-        case SocketException:
-          e as SocketException;
-          message = 'Unable to connect to the server.';
-          statusCode = 0;
-          identifier = 'Socket Exception ${e.message}\n at  $endpoint';
-          break;
+        // case SocketException:
+        //   e as SocketException;
+        //   message = 'Unable to connect to the server.';
+        //   statusCode = ErrorType.socket;
+        //   identifier = 'Socket Exception ${e.message}\n at  $endpoint';
+        //   break;
 
         case DioException:
           e as DioException;
           message = e.response?.data?['message'] ?? 'Internal Error occurred';
-          statusCode = 1;
+          statusCode = ErrorType.httpException;
           identifier = 'DioException ${e.message} \nat  $endpoint';
           break;
 
         default:
           message = 'Unknown error occurred';
-          statusCode = 2;
+          statusCode = ErrorType.unknown;
           identifier = 'Unknown error ${e.toString()}\n at $endpoint';
       }
 
-      throw AppException(
+      throw ServerException(
         message: message,
         statusCode: statusCode,
         identifier: identifier,

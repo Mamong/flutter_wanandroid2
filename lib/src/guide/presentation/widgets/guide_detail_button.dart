@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:flutter_wanandroid2/core/utils/constants/constants.dart';
 import 'package:flutter_wanandroid2/src/article/domain/entities/article.dart';
-import 'package:go_router/go_router.dart';
 
 class GuideDetailButton extends StatelessWidget {
   const GuideDetailButton({super.key, required this.article});

@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_wanandroid2/core/common/widgets/error_view.dart';
+import 'package:flutter_wanandroid2/core/common/widgets/indicators/error_view.dart';
 import 'package:flutter_wanandroid2/core/common/widgets/label_button.dart';
-import 'package:flutter_wanandroid2/core/common/widgets/loading_view.dart';
+import 'package:flutter_wanandroid2/core/common/widgets/indicators/loading_view.dart';
 import 'package:flutter_wanandroid2/core/utils/constants/constants.dart';
 import 'package:flutter_wanandroid2/l10n/app_localizations.dart';
 import 'package:flutter_wanandroid2/src/article/features/search/presentation/app/riverpod/hotkey_provider.dart';
@@ -59,7 +59,10 @@ class HotkeyList extends ConsumerWidget {
                 ],
               ));
         },
-        error: (error, stack) => ErrorView(),
+        error: (error, stack) => ErrorView(
+              error: error,
+              onPressed: () => ref.invalidate(hotkeyProvider),
+            ),
         loading: () => LoadingView());
   }
 }

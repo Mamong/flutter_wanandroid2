@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/widgets.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:flutter_wanandroid2/core/common/app/current_user_provider.dart';
 import 'package:flutter_wanandroid2/core/services/injection_container.dart';
 import 'package:flutter_wanandroid2/src/auth/domain/entities/user.dart';
@@ -7,7 +8,6 @@ import 'package:flutter_wanandroid2/src/auth/domain/usecases/get_user.dart';
 import 'package:flutter_wanandroid2/src/auth/domain/usecases/login.dart';
 import 'package:flutter_wanandroid2/src/auth/domain/usecases/logout.dart';
 import 'package:flutter_wanandroid2/src/auth/domain/usecases/register.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'auth_provider.g.dart';
 part 'auth_state.dart';

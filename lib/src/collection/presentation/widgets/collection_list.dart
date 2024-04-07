@@ -4,11 +4,9 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_wanandroid2/core/common/app/current_user_provider.dart';
-import 'package:flutter_wanandroid2/core/common/widgets/error_view.dart';
 import 'package:flutter_wanandroid2/src/article/presentation/app/article_riverpod_provider/article_source_provider.dart';
 import 'package:flutter_wanandroid2/src/article/presentation/widgets/article_list.dart';
-import 'package:flutter_wanandroid2/core/common/widgets/empty_view.dart';
-import 'package:flutter_wanandroid2/core/common/widgets/loading_view.dart';
+import 'package:flutter_wanandroid2/core/common/widgets/indicators.dart';
 import 'package:flutter_wanandroid2/core/utils/core_utils.dart';
 import 'package:flutter_wanandroid2/src/article/domain/entities/article.dart';
 import 'package:flutter_wanandroid2/src/collection/presentation/app/collection_provider.dart';
@@ -91,12 +89,19 @@ class _CollectionListState extends ConsumerState<CollectionList> {
                     articleSourceProvider
                         .overrideWith((ref) => (ArticleSource.collection, null))
                   ], child: ArticleItem(article: article)),
-              firstPageProgressIndicatorBuilder: (_) => LoadingView(),
-              firstPageErrorIndicatorBuilder: (_) => ErrorView(),
-              newPageProgressIndicatorBuilder: (_) => LoadingView(),
-              newPageErrorIndicatorBuilder: (_) => LoadingView(),
-              noItemsFoundIndicatorBuilder: (_) => EmptyView(),
-              noMoreItemsIndicatorBuilder: (_) => EmptyView()),
+              firstPageProgressIndicatorBuilder: (_) => const LoadingView(),
+              firstPageErrorIndicatorBuilder: (_) => ErrorView(
+                    error: pageController.error,
+                    onPressed: () => pageController.refresh(),
+                  ),
+              newPageProgressIndicatorBuilder: (_) => const LoadingView(),
+              newPageErrorIndicatorBuilder: (_) => ErrorView(
+                    error: pageController.error,
+                    onPressed: () => pageController.refresh(),
+                  ),
+              noItemsFoundIndicatorBuilder: (_) =>
+                  EmptyView(onPressed: () => pageController.refresh()),
+              noMoreItemsIndicatorBuilder: (_) => const NoMoreItemsView()),
           separatorBuilder: (_, __) => Gap(24.w),
         ));
   }

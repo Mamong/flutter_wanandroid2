@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_wanandroid2/core/common/widgets/skeleton.dart';
+import 'package:gap/gap.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_wanandroid2/core/common/widgets/indicators.dart';
+import 'package:flutter_wanandroid2/core/utils/core_utils.dart';
 import 'package:flutter_wanandroid2/src/coin/domain/entities/coin_detail.dart';
 import 'package:flutter_wanandroid2/src/coin/presentation/app/riverpod/user_coin_provider.dart';
 import 'package:flutter_wanandroid2/src/coin/presentation/widgets/coin_detail_header.dart';
 import 'package:flutter_wanandroid2/src/coin/presentation/widgets/coin_detail_item.dart';
-import 'package:gap/gap.dart';
-import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_wanandroid2/core/common/widgets/empty_view.dart';
-import 'package:flutter_wanandroid2/core/common/widgets/error_view.dart';
-import 'package:flutter_wanandroid2/core/common/widgets/loading_view.dart';
-import 'package:flutter_wanandroid2/core/utils/core_utils.dart';
 
+/// shimmer showcase
 class CoinDetailList extends ConsumerStatefulWidget {
   const CoinDetailList({super.key});
 
@@ -56,8 +55,8 @@ class _CoinDetailListState extends ConsumerState<CoinDetailList> {
   Widget build(BuildContext context) {
     ref.listen(UserCoinProvider(authUserFamilyKey), (previous, next) {
       if (next is UserCoinError) {
-        pageController.error = next.message;
-        CoreUtils.showSnackBar(context, message: next.message);
+        pageController.error = next.error;
+        CoreUtils.showSnackBar(context, message: next.error.toString());
       } else if (next is FetchedUserCoinDetails) {
         final articles = next.result.datas;
         if (next.result.hasMore) {
@@ -80,13 +79,24 @@ class _CoinDetailListState extends ConsumerState<CoinDetailList> {
             builderDelegate: PagedChildBuilderDelegate<CoinDetail>(
                 itemBuilder: (context, detail, index) =>
                     CoinDetailItem(detail: detail),
-                firstPageProgressIndicatorBuilder: (_) => LoadingView(),
-                firstPageErrorIndicatorBuilder: (_) => ErrorView(),
-                newPageProgressIndicatorBuilder: (_) => LoadingView(),
-                newPageErrorIndicatorBuilder: (_) => LoadingView(),
-                noItemsFoundIndicatorBuilder: (_) => EmptyView(),
-                noMoreItemsIndicatorBuilder: (_) => EmptyView()),
-            separatorBuilder: (_, __) => Gap(1.w),
+                firstPageProgressIndicatorBuilder: (_) => SkeletonList(
+                      length: 11,
+                      builder: (context, index) =>
+                          const CoinDetailItemSkeleton(),
+                    ),
+                firstPageErrorIndicatorBuilder: (_) => ErrorView(
+                      error: pageController.error,
+                      onPressed: () => pageController.refresh(),
+                    ),
+                newPageProgressIndicatorBuilder: (_) => const LoadingView(),
+                newPageErrorIndicatorBuilder: (_) => ErrorView(
+                      error: pageController.error,
+                      onPressed: () => pageController.retryLastFailedRequest(),
+                    ),
+                noItemsFoundIndicatorBuilder: (_) =>
+                    EmptyView(onPressed: () => pageController.refresh()),
+                noMoreItemsIndicatorBuilder: (_) => const NoMoreItemsView()),
+            separatorBuilder: (_, __) => const Gap(1),
           )
         ]));
   }

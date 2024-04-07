@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_wanandroid2/core/common/widgets/error_view.dart';
-import 'package:flutter_wanandroid2/core/common/widgets/loading_view.dart';
+import 'package:flutter_wanandroid2/core/common/widgets/indicators.dart';
 import 'package:flutter_wanandroid2/src/guide/presentation/app/riverpod/guide_list_provider.dart';
 import 'package:flutter_wanandroid2/src/guide/presentation/app/riverpod/guide_select_provider.dart';
 import 'package:flutter_wanandroid2/src/guide/presentation/widgets/guide_header_item.dart';
@@ -145,7 +144,10 @@ class _GuideListState extends ConsumerState<GuideList> {
         },
         error: (error, stack) {
           print(error);
-          return const ErrorView();
+          return ErrorView(
+            error: error,
+            onPressed: () => ref.invalidate(guideListProvider),
+          );
         },
         loading: () => const LoadingView());
   }

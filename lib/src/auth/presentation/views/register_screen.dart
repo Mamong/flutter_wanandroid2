@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_wanandroid2/l10n/app_localizations.dart';
-
-import '../widgets/register_form.dart';
+import 'package:flutter_wanandroid2/src/auth/presentation/widgets/register_form.dart';
 
 class RegisterScreen extends StatelessWidget {
   const RegisterScreen({super.key});

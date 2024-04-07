@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_wanandroid2/core/common/widgets/error_view.dart';
 import 'package:flutter_wanandroid2/core/common/widgets/keep_alive.dart';
-import 'package:flutter_wanandroid2/core/common/widgets/loading_view.dart';
+import 'package:flutter_wanandroid2/core/common/widgets/indicators.dart';
 import 'package:flutter_wanandroid2/l10n/app_localizations.dart';
 import 'package:flutter_wanandroid2/src/article/presentation/app/article_riverpod_provider/article_source_provider.dart';
 import 'package:flutter_wanandroid2/src/article/presentation/widgets/article_list.dart';
@@ -45,7 +44,10 @@ class ProjectScreen extends ConsumerWidget {
           print(stack);
           return Scaffold(
               appBar: AppBar(title: Text(l10n.tab_public_account)),
-              body: const ErrorView());
+              body: ErrorView(
+                error: error,
+                onPressed: () => ref.invalidate(projectTreeProvider),
+              ));
         },
         loading: () => Scaffold(
             appBar: AppBar(title: Text(l10n.tab_public_account)),

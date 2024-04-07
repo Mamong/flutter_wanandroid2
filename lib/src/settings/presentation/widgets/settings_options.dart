@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+import 'package:theme/theme.dart';
 import 'package:flutter_wanandroid2/core/common/app/app_settings_provider.dart';
 import 'package:flutter_wanandroid2/core/utils/enums/language_enum.dart';
 import 'package:flutter_wanandroid2/l10n/app_localizations.dart';
-import 'package:go_router/go_router.dart';
-import 'package:theme/theme.dart';
 
 class SettingsOptions extends ConsumerWidget {
   SettingsOptions({super.key});
@@ -30,7 +30,10 @@ class SettingsOptions extends ConsumerWidget {
               return ExpansionTile(
                 backgroundColor: Colors.white,
                 collapsedBackgroundColor: Colors.white,
-                leading: const Icon(Icons.color_lens),
+                leading: Icon(
+                  Icons.color_lens,
+                  color: Theme.of(context).primaryColor,
+                ),
                 title: Text(l10n.menu_theme),
                 trailing: Row(
                   mainAxisSize: MainAxisSize.min,
@@ -78,7 +81,10 @@ class SettingsOptions extends ConsumerWidget {
             }),
         ListTile(
           tileColor: Colors.white,
-          leading: const Icon(Icons.language),
+          leading: Icon(
+            Icons.language,
+            color: Theme.of(context).primaryColor,
+          ),
           title: Text(l10n.language),
           trailing: Row(
             mainAxisSize: MainAxisSize.min,

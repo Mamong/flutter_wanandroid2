@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_wanandroid2/core/common/widgets/error_view.dart';
-import 'package:flutter_wanandroid2/core/common/widgets/loading_view.dart';
+import 'package:flutter_wanandroid2/core/common/widgets/indicators.dart';
 import 'package:flutter_wanandroid2/src/hierarchy/presentation/widgets/hierarchy_section.dart';
 import 'package:flutter_wanandroid2/src/hierarchy/presentation/app/riverpod/hierarchy_provider.dart';
 import 'package:gap/gap.dart';
@@ -27,7 +26,10 @@ class HierarchyList extends ConsumerWidget {
         },
         error: (error, stack) {
           print(error.toString());
-          return const ErrorView();
+          return ErrorView(
+            error: error,
+            onPressed: () => ref.invalidate(hierarchyProvider),
+          );
         },
         loading: () => const LoadingView());
   }

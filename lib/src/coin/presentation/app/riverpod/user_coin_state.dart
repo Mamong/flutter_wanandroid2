@@ -41,10 +41,10 @@ class FetchedUserCoinDetails extends UserCoinState {
 }
 
 class UserCoinError extends UserCoinState {
-  const UserCoinError(this.message);
+  const UserCoinError(this.error);
 
-  final String message;
+  final ServerException error;
 
   @override
-  List<Object> get props => [message];
+  List<Object> get props => [error];
 }

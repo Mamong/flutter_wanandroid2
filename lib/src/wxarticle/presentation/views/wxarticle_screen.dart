@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_wanandroid2/core/common/widgets/error_view.dart';
 import 'package:flutter_wanandroid2/core/common/widgets/keep_alive.dart';
-import 'package:flutter_wanandroid2/core/common/widgets/loading_view.dart';
 import 'package:flutter_wanandroid2/l10n/app_localizations.dart';
 import 'package:flutter_wanandroid2/src/article/presentation/app/article_riverpod_provider/article_source_provider.dart';
 import 'package:flutter_wanandroid2/src/article/presentation/widgets/article_list.dart';
 import 'package:flutter_wanandroid2/src/wxarticle/presentation/app/riverpod/wxarticle_tree_provider.dart';
+import 'package:flutter_wanandroid2/core/common/widgets/indicators.dart';
 
 class WXArticleScreen extends ConsumerWidget {
   const WXArticleScreen({super.key});
@@ -45,7 +44,10 @@ class WXArticleScreen extends ConsumerWidget {
           print(stack);
           return Scaffold(
               appBar: AppBar(title: Text(l10n.tab_public_account)),
-              body: const ErrorView());
+              body: ErrorView(
+                error: error,
+                onPressed: () => ref.invalidate(wxarticleTreeProvider),
+              ));
         },
         loading: () => Scaffold(
             appBar: AppBar(title: Text(l10n.tab_public_account)),

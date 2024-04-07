@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_wanandroid2/core/res/media.dart';
 import 'package:flutter_wanandroid2/core/res/styles/colors.dart';
 import 'package:flutter_wanandroid2/core/utils/constants/constants.dart';
 import 'package:flutter_wanandroid2/l10n/app_localizations.dart';
 import 'package:flutter_wanandroid2/src/about/presentation/widgets/about_linker_item.dart';
-import 'package:gap/gap.dart';
 
 class AboutScreen extends StatelessWidget {
   const AboutScreen({super.key});

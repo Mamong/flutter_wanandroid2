@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
 import 'package:flutter_wanandroid2/core/common/app/app_settings_provider.dart';
-
 import 'package:theme/theme.dart';
 
 import 'core/services/router.dart';
@@ -51,11 +50,7 @@ class MyApp extends ConsumerWidget {
             darkTheme: darkTheme.materialThemeData,
             themeMode: ThemeMode.light,
             locale: Locale(lang[0], lang[1]),
-            supportedLocales: const [
-              Locale('en', 'US'),
-              Locale('zh', 'CN'),
-              Locale('zh', 'HK'),
-            ],
+            supportedLocales: AppLocalizations.supportedLocales,
             localizationsDelegates: const [
               GlobalWidgetsLocalizations.delegate,
               GlobalCupertinoLocalizations.delegate,

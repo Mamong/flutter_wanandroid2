@@ -1,8 +1,8 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_wanandroid2/core/res/styles/colors.dart';
 import 'package:go_router/go_router.dart';
+import 'package:flutter_wanandroid2/core/res/styles/colors.dart';
 
 class AboutLinkerItem extends StatefulWidget {
   const AboutLinkerItem({

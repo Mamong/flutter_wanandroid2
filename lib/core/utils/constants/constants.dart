@@ -18,4 +18,5 @@ abstract class Constants {
   static const csdnStr = 'https://blog.csdn.net/Mamong';
   static const downloadUrl = 'https://github.com/Mamong/Expo_WanAndroid';
   static const qqEmail = '1054209736@qq.com';
+  static const pointRule = 'https://www.wanandroid.com/blog/show/2653';
 }
