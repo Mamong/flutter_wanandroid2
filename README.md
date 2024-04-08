@@ -7,4 +7,4 @@ A new Wan Android Flutter client based on clean architecture.
 
 ## Screenshots
 
-[](screenshots/1.gif)
+![](screenshots/1.gif)
