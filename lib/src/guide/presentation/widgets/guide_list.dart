@@ -60,11 +60,12 @@ class _GuideListState extends ConsumerState<GuideList> {
     final (min, max) = getVisibleRange(controller);
     final total = ref.read(guideListProvider).requireValue.length;
     int maxIndex = total - 1 - (max! - min!);
-    index = index < maxIndex ? index : maxIndex;
-    await controller.scrollTo(
-        index: index,
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.easeInOutCubic);
+    if (index <= maxIndex) {
+      await controller.scrollTo(
+          index: index,
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.easeInOutCubic);
+    } else {}
   }
 
   (int?, int?) getVisibleRange(ItemScrollController controller) {

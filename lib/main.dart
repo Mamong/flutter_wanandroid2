@@ -17,7 +17,7 @@ void main() async {
   late ErrorReportingService errorReportingService;
 
   runZonedGuarded<Future<void>>(
-        () async {
+    () async {
       WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
       FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
       await initializeMonitoringPackage();
@@ -48,7 +48,7 @@ void main() async {
       await init();
       runApp(
         const ProviderScope(
-          child:MyApp(),
+          child: MyApp(),
         ),
       );
       FlutterNativeSplash.remove();
@@ -56,7 +56,7 @@ void main() async {
 //       (error, stack){
 //           print("$error: $stack");
 //       }
-        (error, stack) => errorReportingService.recordError(
+    (error, stack) => errorReportingService.recordError(
       error,
       stack,
       fatal: true,

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:flutter_wanandroid2/core/res/media.dart';
 import 'package:flutter_wanandroid2/l10n/app_localizations.dart';
-import 'package:go_router/go_router.dart';
 import 'package:flutter_wanandroid2/core/common/app_storage_service.dart';
 import 'package:flutter_wanandroid2/core/common/widgets/rounded_button.dart';
 import 'package:flutter_wanandroid2/core/res/styles/colors.dart';
@@ -68,8 +69,10 @@ class OnBoardingInfoSection extends StatelessWidget {
               ),
             if (index == 2)
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                 child: RoundedButton(
+                  height: 50,
                   text: AppLocalizations.of(context).onBoardingEnter,
                   onPressed: () {
                     sl<AppStorageService>().cacheVersion();

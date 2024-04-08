@@ -21,6 +21,8 @@ class _RegisterFormState extends ConsumerState<RegisterForm> {
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController passwordAgainController = TextEditingController();
   final TapGestureRecognizer tapGestureRecognizer = TapGestureRecognizer();
+  final ScrollController scrollController = ScrollController();
+  final lastFocusNode = FocusNode();
 
   final GlobalKey _formKey = GlobalKey<FormState>();
   final obscurePasswordNotifier = ValueNotifier(true);
@@ -32,6 +34,15 @@ class _RegisterFormState extends ConsumerState<RegisterForm> {
     tapGestureRecognizer.onTap = () {
       context.replace("/login");
     };
+    lastFocusNode.addListener(() {
+      if (lastFocusNode.hasFocus) {
+        scrollController.animateTo(
+          scrollController.position.maxScrollExtent,
+          duration: const Duration(milliseconds: 500),
+          curve: Curves.easeInOut,
+        );
+      }
+    });
   }
 
   @override
@@ -42,6 +53,8 @@ class _RegisterFormState extends ConsumerState<RegisterForm> {
     obscurePasswordNotifier.dispose();
     obscurePasswordAgainNotifier.dispose();
     tapGestureRecognizer.dispose();
+    lastFocusNode.dispose();
+    scrollController.dispose();
     super.dispose();
   }
 
@@ -64,119 +77,126 @@ class _RegisterFormState extends ConsumerState<RegisterForm> {
       }
     });
 
-    return Form(
-        key: _formKey,
-        autovalidateMode: AutovalidateMode.always,
-        child: Padding(
-            padding: EdgeInsets.all(60.w),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Gap(40.w),
-                TextFormField(
-                  autofocus: true,
-                  controller: unameController,
-                  decoration: InputDecoration(
-                      //labelText: l10n.login_userName,
-                      hintText: l10n.login_userName,
-                      icon: const Icon(Icons.person)),
-                  validator: (v) {
-                    if (v == null || v.trim().isEmpty) {
-                      return l10n.tips_username_empty;
-                    }
-                    return null;
-                  },
-                ),
-                ValueListenableBuilder(
-                    valueListenable: obscurePasswordNotifier,
-                    builder: (_, value, __) {
-                      return TextFormField(
-                        autofocus: true,
-                        obscureText: value,
-                        controller: passwordController,
-                        decoration: InputDecoration(
-                          //labelText: l10n.login_pwd,
-                          hintText: l10n.login_pwd,
-                          icon: const Icon(Icons.lock),
-                          suffix: IconButton(
-                            icon: const Icon(Icons.remove_red_eye),
-                            onPressed: () {
-                              obscurePasswordNotifier.value = !value;
-                            },
-                          ),
-                        ),
-                        validator: (v) {
-                          if (v == null || v.trim().isEmpty) {
-                            return l10n.tips_pwd_empty;
-                          }
-                          return null;
-                        },
-                      );
-                    }),
-                ValueListenableBuilder(
-                    valueListenable: obscurePasswordAgainNotifier,
-                    builder: (_, value, __) {
-                      return TextFormField(
-                        autofocus: true,
-                        obscureText: value,
-                        controller: passwordAgainController,
-                        decoration: InputDecoration(
-                          //labelText: l10n.register_confirm_pwd,
-                          hintText: l10n.register_confirm_pwd,
-                          icon: const Icon(Icons.lock),
-                          suffix: IconButton(
-                            icon: const Icon(Icons.remove_red_eye),
-                            onPressed: () {
-                              obscurePasswordAgainNotifier.value = !value;
-                            },
-                          ),
-                        ),
-                        validator: (v) {
-                          if (v == null || v.trim().isEmpty) {
-                            return l10n.tips_pwd_confirm_empty;
-                          }
-                          return null;
-                        },
-                      );
-                    }),
-                Gap(60.w),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 50.w),
-                  child: SizedBox(
-                      height: 100.w,
-                      child: FilledButton(
-                          onPressed: authState is AuthLoading
-                              ? null
-                              : () {
-                                  if ((_formKey.currentState as FormState)
-                                      .validate()) {
-                                    ref.read(authProvider().notifier).register(
-                                        username: unameController.text,
-                                        password: passwordController.text,
-                                        repassword:
-                                            passwordAgainController.text);
-                                  }
+    return SingleChildScrollView(
+        controller: scrollController,
+        child: Form(
+            key: _formKey,
+            autovalidateMode: AutovalidateMode.always,
+            child: Padding(
+                padding: EdgeInsets.all(60.w),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Gap(40.w),
+                    TextFormField(
+                      autofocus: true,
+                      controller: unameController,
+                      decoration: InputDecoration(
+                          //labelText: l10n.login_userName,
+                          hintText: l10n.login_userName,
+                          icon: const Icon(Icons.person)),
+                      validator: (v) {
+                        if (v == null || v.trim().isEmpty) {
+                          return l10n.tips_username_empty;
+                        }
+                        return null;
+                      },
+                    ),
+                    ValueListenableBuilder(
+                        valueListenable: obscurePasswordNotifier,
+                        builder: (_, value, __) {
+                          return TextFormField(
+                            autofocus: true,
+                            obscureText: value,
+                            controller: passwordController,
+                            decoration: InputDecoration(
+                              //labelText: l10n.login_pwd,
+                              hintText: l10n.login_pwd,
+                              icon: const Icon(Icons.lock),
+                              suffix: IconButton(
+                                icon: const Icon(Icons.remove_red_eye),
+                                onPressed: () {
+                                  obscurePasswordNotifier.value = !value;
                                 },
-                          child: authState is AuthLoading
-                              ? const CircularProgressIndicator()
-                              : Text(l10n.register))),
-                ),
-                Gap(40.w),
-                RichText(
-                  text: TextSpan(
-                      style:
-                          TextStyle(fontSize: 28.w, color: Colours.TEXT_LIGHT),
-                      children: [
-                        TextSpan(text: l10n.register_to_login),
-                        TextSpan(
-                            text: l10n.login,
-                            style: TextStyle(
-                                color: Theme.of(context).primaryColor),
-                            recognizer: tapGestureRecognizer)
-                      ]),
-                  textAlign: TextAlign.center,
-                ),
-              ],
-            )));
+                              ),
+                            ),
+                            validator: (v) {
+                              if (v == null || v.trim().isEmpty) {
+                                return l10n.tips_pwd_empty;
+                              }
+                              return null;
+                            },
+                          );
+                        }),
+                    ValueListenableBuilder(
+                        valueListenable: obscurePasswordAgainNotifier,
+                        builder: (_, value, __) {
+                          return TextFormField(
+                            focusNode: lastFocusNode,
+                            autofocus: true,
+                            obscureText: value,
+                            controller: passwordAgainController,
+                            decoration: InputDecoration(
+                              //labelText: l10n.register_confirm_pwd,
+                              hintText: l10n.register_confirm_pwd,
+                              icon: const Icon(Icons.lock),
+                              suffix: IconButton(
+                                icon: const Icon(Icons.remove_red_eye),
+                                onPressed: () {
+                                  obscurePasswordAgainNotifier.value = !value;
+                                },
+                              ),
+                            ),
+                            validator: (v) {
+                              if (v == null || v.trim().isEmpty) {
+                                return l10n.tips_pwd_confirm_empty;
+                              }
+                              return null;
+                            },
+                          );
+                        }),
+                    Gap(60.w),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 50.w),
+                      child: SizedBox(
+                          height: 100.w,
+                          child: FilledButton(
+                              onPressed: authState is AuthLoading
+                                  ? null
+                                  : () {
+                                      if ((_formKey.currentState as FormState)
+                                          .validate()) {
+                                        ref
+                                            .read(authProvider().notifier)
+                                            .register(
+                                                username: unameController.text,
+                                                password:
+                                                    passwordController.text,
+                                                repassword:
+                                                    passwordAgainController
+                                                        .text);
+                                      }
+                                    },
+                              child: authState is AuthLoading
+                                  ? const CircularProgressIndicator()
+                                  : Text(l10n.register))),
+                    ),
+                    Gap(40.w),
+                    RichText(
+                      text: TextSpan(
+                          style: TextStyle(
+                              fontSize: 28.w, color: Colours.TEXT_LIGHT),
+                          children: [
+                            TextSpan(text: l10n.register_to_login),
+                            TextSpan(
+                                text: l10n.login,
+                                style: TextStyle(
+                                    color: Theme.of(context).primaryColor),
+                                recognizer: tapGestureRecognizer)
+                          ]),
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ))));
   }
 }

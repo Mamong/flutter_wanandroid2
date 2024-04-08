@@ -13,7 +13,7 @@ class LoginScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(l10n.login),
       ),
-      body: const LoginForm(),
+      body: const SingleChildScrollView(child: LoginForm()),
     );
   }
 }
