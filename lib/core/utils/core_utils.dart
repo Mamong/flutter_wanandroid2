@@ -65,7 +65,9 @@ abstract class CoreUtils {
     required Color lightModeColour,
     required Color darkModeColour,
   }) {
-    return context.isDarkMode ? darkModeColour : lightModeColour;
+    return Theme.of(context).brightness == Brightness.dark
+        ? darkModeColour
+        : lightModeColour;
   }
 
   static void rebuildAllChildren([BuildContext? context]) {

@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:flutter_wanandroid2/core/services/injection_container.dart';
 import 'package:flutter_wanandroid2/core/usecase/usecase.dart';
 import 'package:flutter_wanandroid2/src/collection/domain/entities/collection.dart';
@@ -7,7 +8,6 @@ import 'package:flutter_wanandroid2/src/collection/domain/usecases/collect_artic
 import 'package:flutter_wanandroid2/src/collection/domain/usecases/get_collect_articles.dart';
 import 'package:flutter_wanandroid2/src/collection/domain/usecases/uncollect_article.dart';
 import 'package:flutter_wanandroid2/src/collection/domain/usecases/uncollect_my_article.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'collection_provider.g.dart';
 part 'collection_state.dart';
@@ -58,6 +58,6 @@ class Collection extends _$Collection {
     final result = await _uncollectMyArticle(
         UncollectMyArticleParams(id: id, originId: originId));
     result.fold((failure) => state = CollectionError(failure.message),
-        (_) => state = RemovedFromCollection());
+        (_) => state = const RemovedFromCollection());
   }
 }

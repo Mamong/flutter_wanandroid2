@@ -3,6 +3,9 @@ import 'dart:async';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_wanandroid2/core/utils/typedefs.dart';
 
+
+/// here we offer two usecase style: with exception or without exception
+/// usecase without exception, that is, exception will be packed into the result
 abstract class UsecaseWithParams<Type, Params> {
   const UsecaseWithParams();
 
@@ -15,6 +18,7 @@ abstract class UsecaseWithoutParams<Type> {
   ResultFuture<Type> call();
 }
 
+/// usecase with exception, that is, exception will be thrown
 abstract class UsecaseWithParamsExp<Type, Params> {
   const UsecaseWithParamsExp();
 

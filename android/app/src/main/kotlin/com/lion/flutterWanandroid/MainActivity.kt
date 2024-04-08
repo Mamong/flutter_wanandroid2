@@ -1,4 +1,4 @@
-package com.example.flutter_wanandroid2
+package com.lion.flutterWanandroid
 
 import io.flutter.embedding.android.FlutterActivity
 

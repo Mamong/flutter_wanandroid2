@@ -1,9 +1,8 @@
 import 'dart:async';
-
+import 'package:riverpod/src/async_notifier.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_wanandroid2/core/usecase/usecase.dart';
 import 'package:flutter_wanandroid2/src/article/domain/entities/paginated_resp.dart';
-import 'package:riverpod/src/async_notifier.dart';
 
 
 mixin PaginationController<T> on AsyncNotifierBase<PaginatedResp<T>> {

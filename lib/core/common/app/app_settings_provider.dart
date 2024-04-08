@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:equatable/equatable.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:flutter_wanandroid2/core/common/app_storage_service.dart';
 import 'package:flutter_wanandroid2/core/common/singletons/cache.dart';
 import 'package:flutter_wanandroid2/core/services/injection_container.dart';
-import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:equatable/equatable.dart';
 
 part 'app_settings_state.dart';
-
 part 'app_settings_provider.g.dart';
 
 @Riverpod(keepAlive: true)

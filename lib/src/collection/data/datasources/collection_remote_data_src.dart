@@ -24,13 +24,12 @@ class CollectionRemoteDataSrcImpl implements CollectionRemoteDataSrc {
 
   @override
   Future<void> collectArticle(int id) async {
-    await _httpService.post('/lg/collect/$id/json', data: {"id": id});
+    await _httpService.post('/lg/collect/$id/json');
   }
 
   @override
   Future<void> uncollectArticle(int id) async {
-    await _httpService
-        .post('/lg/uncollect_originId/$id/json', data: {"id": id});
+    await _httpService.post('/lg/uncollect_originId/$id/json');
   }
 
   @override

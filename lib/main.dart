@@ -22,7 +22,7 @@ void main() async {
       FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
       await initializeMonitoringPackage();
       errorReportingService = ErrorReportingService();
-// debugPaintSizeEnabled = true;
+      // debugPaintSizeEnabled = true;
       //final remoteValueService = RemoteValueService();
       //await remoteValueService.load();
 
@@ -53,13 +53,13 @@ void main() async {
       );
       FlutterNativeSplash.remove();
     },
-      (error, stack){
-          print("$error: $stack");
-      }
-    //     (error, stack) => errorReportingService.recordError(
-    //   error,
-    //   stack,
-    //   fatal: true,
-    // ),
+//       (error, stack){
+//           print("$error: $stack");
+//       }
+        (error, stack) => errorReportingService.recordError(
+      error,
+      stack,
+      fatal: true,
+    ),
   );
 }

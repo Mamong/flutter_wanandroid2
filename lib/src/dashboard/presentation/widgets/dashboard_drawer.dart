@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_wanandroid2/core/res/media.dart';
 import 'package:go_router/go_router.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:flutter_wanandroid2/core/common/app/current_user_provider.dart';
@@ -77,7 +78,7 @@ class DashboardDrawer extends ConsumerWidget {
                 },
                 child: CircleAvatar(
                   child: user != null
-                      ? Image.asset("assets/images/logo.jpg")
+                      ? Image.asset(Media.logo)
                       : const Icon(Icons.person),
                 )),
             otherAccountsPictures: <Widget>[

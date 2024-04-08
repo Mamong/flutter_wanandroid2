@@ -22,6 +22,4 @@ import 'package:flutter_wanandroid2/src/webview/presentation/views/webview_scree
 import 'package:flutter_wanandroid2/src/wxarticle/presentation/views/wxarticle_screen.dart';
 import 'package:go_router/go_router.dart';
 
-import 'injection_container.dart';
-
 part 'router.main.dart';

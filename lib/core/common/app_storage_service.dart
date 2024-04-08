@@ -1,14 +1,10 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
+import 'package:key_value_storage/key_value_storage.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:flutter_wanandroid2/core/common/singletons/cache.dart';
 import 'package:flutter_wanandroid2/core/utils/enums/language_enum.dart';
 import 'package:flutter_wanandroid2/src/auth/domain/entities/user.dart';
-import 'package:key_value_storage/key_value_storage.dart';
-import 'package:package_info_plus/package_info_plus.dart';
-
-// final appServiceProvider =
-//     Provider<AppStorageService>((ref) => AppStorageService(ref));
 
 //save some settings and userInfo in storage
 class AppStorageService {
@@ -17,7 +13,6 @@ class AppStorageService {
   late final StorageService storageService;
 
   Future<String> getTheme() async {
-    // final storageService = ref.read(storageServiceProvider).requireValue;
     String? theme = await storageService.get(APP_THEME_STORAGE_KEY) as String?;
 
     // First time loading.
@@ -30,12 +25,10 @@ class AppStorageService {
   }
 
   Future<void> setTheme(String mode) async {
-    // final storageService = ref.read(storageServiceProvider).requireValue;
     await storageService.set(APP_THEME_STORAGE_KEY, mode);
   }
 
   Future<int> getThemeColor() async {
-    // final storageService = ref.read(storageServiceProvider).requireValue;
     int? themeColor =
         await storageService.get(APP_THEME_COLOR_STORAGE_KEY) as int?;
 
@@ -48,12 +41,10 @@ class AppStorageService {
   }
 
   Future<void> setThemeColor(int color) async {
-    // final storageService = ref.read(storageServiceProvider).requireValue;
     await storageService.set(APP_THEME_COLOR_STORAGE_KEY, color);
   }
 
   Future<String> getLanguage() async {
-    // final storageService = ref.read(storageServiceProvider).requireValue;
     String? language =
         await storageService.get(APP_LANGUAGE_STORAGE_KEY) as String?;
 
@@ -66,22 +57,18 @@ class AppStorageService {
   }
 
   Future<void> setLanguage(String language) async {
-    // final storageService = ref.read(storageServiceProvider).requireValue;
     await storageService.set(APP_LANGUAGE_STORAGE_KEY, language);
   }
 
   Future<String?> getToken() async {
-    // final storageService = ref.read(storageServiceProvider).requireValue;
     return await storageService.get(APP_TOKEN_STORAGE_KEY) as String?;
   }
 
   Future<void> setToken(String token) async {
-    // final storageService = ref.read(storageServiceProvider).requireValue;
     await storageService.set(APP_TOKEN_STORAGE_KEY, token);
   }
 
   Future<User?> getUserInfo() async {
-    // final storageService = ref.read(storageServiceProvider).requireValue;
     final json = await storageService.get(APP_USERINFO_STORAGE_KEY) as String?;
     if (json != null) {
       final user = User.fromJson(jsonDecode(json));
@@ -93,13 +80,11 @@ class AppStorageService {
   }
 
   Future<void> setUserInfo(User userInfo) async {
-    // final storageService = ref.read(storageServiceProvider).requireValue;
     await storageService.set(
         APP_USERINFO_STORAGE_KEY, jsonEncode(userInfo.toJson()));
   }
 
   Future<void> clearUserInfo() async {
-    // final storageService = ref.read(storageServiceProvider).requireValue;
     await storageService.remove(APP_USERINFO_STORAGE_KEY);
   }
 

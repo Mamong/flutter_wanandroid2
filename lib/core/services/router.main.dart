@@ -38,8 +38,7 @@ final router = GoRouter(
           /// extra, if we did, then we were trying to go home, else, we just
           /// go to the splashscreen, where the OTP gets verified, if it's
           /// still valid, we go home, else, we go back to login.
-          if (true ||
-              Cache.instance.appInstallStatus == AppInstallStatus.newInstall ||
+          if (Cache.instance.appInstallStatus == AppInstallStatus.newInstall ||
               Cache.instance.appInstallStatus == AppInstallStatus.upgrade) {
             return const OnBoardingScreen();
           }
