@@ -95,6 +95,18 @@ abstract class AppLocalizations {
     Locale('zh', 'HK')
   ];
 
+  /// No description provided for @onBoardingSkip.
+  ///
+  /// In en, this message translates to:
+  /// **'Skip'**
+  String get onBoardingSkip;
+
+  /// No description provided for @onBoardingEnter.
+  ///
+  /// In en, this message translates to:
+  /// **'Get Started'**
+  String get onBoardingEnter;
+
   /// No description provided for @tips_login.
   ///
   /// In en, this message translates to:

@@ -34,6 +34,7 @@ class _WebViewState extends State<WebViewScreen> {
             loadingNotifier.value = false;
           },
           onWebResourceError: (WebResourceError error) {
+            loadingNotifier.value = false;
             print(error.description);
           },
           onNavigationRequest: (NavigationRequest request) {

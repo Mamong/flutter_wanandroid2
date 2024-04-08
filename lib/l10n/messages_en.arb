@@ -1,4 +1,6 @@
 {
+    "onBoardingSkip": "Skip",
+    "onBoardingEnter": "Get Started",
     "tips_login": "Please login first",
     "language": "Language",
     "search_placeholder": "Search for more dry goods",

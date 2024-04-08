@@ -1,4 +1,6 @@
 {
+  "onBoardingSkip": "跳過",
+  "onBoardingEnter": "進入",
   "tips_login": "請先登錄",
   "language": "多語言",
   "search_placeholder": "搜索更多乾貨",

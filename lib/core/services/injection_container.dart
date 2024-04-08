@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:flutter_wanandroid2/core/common/app_storage_service.dart';
 import 'package:flutter_wanandroid2/core/common/singletons/cache.dart';
 import 'package:flutter_wanandroid2/src/article/data/datasources/article_remote_data_src.dart';
 import 'package:flutter_wanandroid2/src/article/data/repos/article_repo_impl.dart';
@@ -39,8 +39,6 @@ import 'package:flutter_wanandroid2/src/home/domain/usecases/get_project_tree.da
 import 'package:flutter_wanandroid2/src/home/domain/usecases/get_wxarticle_tree.dart';
 import 'package:get_it/get_it.dart';
 import 'package:network/network.dart';
-
-import '../common/app_storage_service.dart';
 
 import 'package:key_value_storage/key_value_storage.dart';
 

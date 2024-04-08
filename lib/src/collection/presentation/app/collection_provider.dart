@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_wanandroid2/core/services/injection_container.dart';
 import 'package:flutter_wanandroid2/core/usecase/usecase.dart';
-import 'package:flutter_wanandroid2/src/article/domain/entities/article.dart';
+import 'package:flutter_wanandroid2/src/collection/domain/entities/collection.dart';
 import 'package:flutter_wanandroid2/src/collection/domain/usecases/collect_article.dart';
 import 'package:flutter_wanandroid2/src/collection/domain/usecases/get_collect_articles.dart';
 import 'package:flutter_wanandroid2/src/collection/domain/usecases/uncollect_article.dart';

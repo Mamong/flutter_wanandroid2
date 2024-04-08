@@ -27,7 +27,8 @@ final router = GoRouter(
           /// could be gone but they aren't first timers, so, we take them to
           /// login, but if they are first timers, we return null which pushes us
           /// to the builder
-          return '/home';
+          if (state.extra == 'home') return '/home';
+          return null;
         },
         builder: (context, state) {
           /// Now that we're here, we check again if the user is first timer,
@@ -37,8 +38,12 @@ final router = GoRouter(
           /// extra, if we did, then we were trying to go home, else, we just
           /// go to the splashscreen, where the OTP gets verified, if it's
           /// still valid, we go home, else, we go back to login.
-
-          return Container();
+          if (true ||
+              Cache.instance.appInstallStatus == AppInstallStatus.newInstall ||
+              Cache.instance.appInstallStatus == AppInstallStatus.upgrade) {
+            return const OnBoardingScreen();
+          }
+          return const SplashScreen();
         }),
 
     /// Application shell
@@ -177,7 +182,7 @@ final router = GoRouter(
       path: '/search',
       parentNavigatorKey: rootNavigatorKey,
       builder: (BuildContext context, GoRouterState state) {
-        return SearchScreen();
+        return const SearchScreen();
       },
       routes: <RouteBase>[
         GoRoute(

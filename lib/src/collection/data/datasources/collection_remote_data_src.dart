@@ -1,4 +1,4 @@
-import 'package:flutter_wanandroid2/src/article/data/models/article_model.dart';
+import 'package:flutter_wanandroid2/src/collection/data/models/collection_model.dart';
 import 'package:flutter_wanandroid2/src/article/data/models/paginated_resp_model.dart';
 import 'package:network/network.dart';
 
@@ -10,7 +10,7 @@ abstract class CollectionRemoteDataSrc {
   Future<void> uncollectArticle(int id);
 
   /// my collection article list
-  Future<PaginatedRespModel<ArticleModel>> getCollectArticles(
+  Future<PaginatedRespModel<CollectionModel>> getCollectArticles(
       {int page, int pageSize});
 
   /// uncollect article in my collection
@@ -34,12 +34,12 @@ class CollectionRemoteDataSrcImpl implements CollectionRemoteDataSrc {
   }
 
   @override
-  Future<PaginatedRespModel<ArticleModel>> getCollectArticles(
+  Future<PaginatedRespModel<CollectionModel>> getCollectArticles(
       {int page = 0, int pageSize = 10}) async {
     final responseData = await _httpService.get('/lg/collect/list/$page/json',
         queryParameters: {"page_size": pageSize});
-    return PaginatedRespModel<ArticleModel>.fromJson(
-        responseData.data, ArticleModel.fromJsonModel);
+    return PaginatedRespModel<CollectionModel>.fromJson(
+        responseData.data, CollectionModel.fromJsonModel);
   }
 
   @override

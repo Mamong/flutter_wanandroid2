@@ -7,7 +7,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_wanandroid2/core/res/styles/button.dart';
 import 'package:flutter_wanandroid2/core/res/styles/colors.dart';
-import 'package:flutter_wanandroid2/src/article/domain/entities/article.dart';
 import 'package:flutter_wanandroid2/src/article/presentation/app/article_riverpod_provider/article_source_provider.dart';
 import 'package:flutter_wanandroid2/core/utils/constants/constants.dart';
 import 'package:flutter_wanandroid2/core/utils/core_utils.dart';

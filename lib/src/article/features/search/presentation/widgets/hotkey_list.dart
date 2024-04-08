@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_wanandroid2/core/common/widgets/indicators/error_view.dart';
-import 'package:flutter_wanandroid2/core/common/widgets/label_button.dart';
 import 'package:flutter_wanandroid2/core/common/widgets/indicators/loading_view.dart';
 import 'package:flutter_wanandroid2/core/utils/constants/constants.dart';
 import 'package:flutter_wanandroid2/l10n/app_localizations.dart';
@@ -47,13 +47,20 @@ class HotkeyList extends ConsumerWidget {
                     spacing: 20.w,
                     runSpacing: 20.w,
                     children: data
-                        .map((e) => LabelButton(
-                              title: e.name,
-                              color: Constants.chapterBgColor[e.id % 10],
-                              onTap: () {
-                                context.push("/search/result?key=${e.name}");
-                              },
-                            ))
+                        .map((e) => ActionChip(
+                            label: Text(
+                              e.name,
+                              style: const TextStyle(color: Colors.white),
+                            ),
+                            shape: const RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(15))),
+                            side: BorderSide.none,
+                            backgroundColor:
+                                Constants.chapterBgColor[e.id % 10],
+                            onPressed: () {
+                              context.push("/search/result?key=${e.name}");
+                            }))
                         .toList(),
                   )
                 ],
@@ -63,6 +70,6 @@ class HotkeyList extends ConsumerWidget {
               error: error,
               onPressed: () => ref.invalidate(hotkeyProvider),
             ),
-        loading: () => LoadingView());
+        loading: () => const LoadingView());
   }
 }

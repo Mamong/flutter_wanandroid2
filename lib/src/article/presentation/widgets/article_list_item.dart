@@ -6,27 +6,11 @@ class ArticleListItem extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final (source, ext) = ref.read(articleSourceProvider);
-
     final index = ref.read(indexProvider);
     final article = ref
         .watch(ArticleAdapterProvider(source, ext))
         .requireValue
         .datas[index];
-    return ArticleItem(
-      article: article,
-    );
-  }
-}
-
-class ArticleItem extends ConsumerWidget {
-  const ArticleItem({super.key, required this.article});
-
-  final Article article;
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final (source, _) = ref.read(articleSourceProvider);
-
     return Container(
         padding: EdgeInsets.symmetric(horizontal: 24.w),
         child: Ink(
@@ -51,7 +35,10 @@ class ArticleItem extends ConsumerWidget {
                         children: [
                           //title
                           ArticleTitle(
-                              title: article.title, isTop: article.isTop),
+                            title: article.title,
+                            isTop: article.isTop,
+                            isFresh: article.fresh,
+                          ),
                           //desc
                           Padding(
                             padding: EdgeInsets.symmetric(vertical: 12.w),
@@ -109,10 +96,33 @@ class ArticleItem extends ConsumerWidget {
 }
 
 class ArticleTitle extends StatelessWidget {
-  const ArticleTitle({super.key, required this.title, this.isTop = false});
+  const ArticleTitle(
+      {required this.title,
+      this.isTop = false,
+      this.isFresh = false,
+      super.key});
 
   final String title;
   final bool isTop;
+  final bool isFresh;
+
+  WidgetSpan createTagSpan(String tag) {
+    return WidgetSpan(
+        baseline: TextBaseline.alphabetic,
+        alignment: PlaceholderAlignment.baseline,
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+          decoration: BoxDecoration(
+              color: Colors.red, borderRadius: BorderRadius.circular(4)),
+          child: Text(
+            tag,
+            style: TextStyle(
+                fontSize: 26.w,
+                fontWeight: FontWeight.bold,
+                color: Colors.white),
+          ),
+        ));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -120,26 +130,8 @@ class ArticleTitle extends StatelessWidget {
         maxLines: 2,
         overflow: TextOverflow.ellipsis,
         text: TextSpan(children: [
-          if (isTop) ...[
-            WidgetSpan(
-                baseline: TextBaseline.alphabetic,
-                alignment: PlaceholderAlignment.baseline,
-                child: Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-                  decoration: BoxDecoration(
-                      color: Colors.red,
-                      borderRadius: BorderRadius.circular(4)),
-                  child: Text(
-                    "置顶",
-                    style: TextStyle(
-                        fontSize: 26.w,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white),
-                  ),
-                )),
-            const TextSpan(text: " ")
-          ],
+          if (isTop) ...[createTagSpan("置顶"), const TextSpan(text: " ")],
+          if (isFresh) ...[createTagSpan("新"), const TextSpan(text: " ")],
           TextSpan(
             ///TODO: deal with html tag and content escape
             text: title

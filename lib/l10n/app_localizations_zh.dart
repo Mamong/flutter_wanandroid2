@@ -5,6 +5,12 @@ class AppLocalizationsZh extends AppLocalizations {
   AppLocalizationsZh([String locale = 'zh']) : super(locale);
 
   @override
+  String get onBoardingSkip => '跳过';
+
+  @override
+  String get onBoardingEnter => '进入';
+
+  @override
   String get tips_login => '请先登录';
 
   @override
@@ -159,6 +165,12 @@ class AppLocalizationsZhCn extends AppLocalizationsZh {
   AppLocalizationsZhCn(): super('zh_CN');
 
   @override
+  String get onBoardingSkip => '跳过';
+
+  @override
+  String get onBoardingEnter => '进入';
+
+  @override
   String get tips_login => '请先登录';
 
   @override
@@ -311,6 +323,12 @@ class AppLocalizationsZhCn extends AppLocalizationsZh {
 /// The translations for Chinese, as used in Hong Kong (`zh_HK`).
 class AppLocalizationsZhHk extends AppLocalizationsZh {
   AppLocalizationsZhHk(): super('zh_HK');
+
+  @override
+  String get onBoardingSkip => '跳過';
+
+  @override
+  String get onBoardingEnter => '進入';
 
   @override
   String get tips_login => '請先登錄';

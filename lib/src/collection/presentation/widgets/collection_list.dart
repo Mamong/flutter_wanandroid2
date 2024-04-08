@@ -1,5 +1,9 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_wanandroid2/core/utils/constants/constants.dart';
+import 'package:flutter_wanandroid2/src/collection/domain/entities/collection.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,8 +12,9 @@ import 'package:flutter_wanandroid2/src/article/presentation/app/article_riverpo
 import 'package:flutter_wanandroid2/src/article/presentation/widgets/article_list.dart';
 import 'package:flutter_wanandroid2/core/common/widgets/indicators.dart';
 import 'package:flutter_wanandroid2/core/utils/core_utils.dart';
-import 'package:flutter_wanandroid2/src/article/domain/entities/article.dart';
 import 'package:flutter_wanandroid2/src/collection/presentation/app/collection_provider.dart';
+
+part 'collection_list_item.dart';
 
 /// infinite_scroll_pagination showcase
 
@@ -29,7 +34,7 @@ class CollectionList extends ConsumerStatefulWidget {
 }
 
 class _CollectionListState extends ConsumerState<CollectionList> {
-  late PagingController<int, Article> pageController;
+  late PagingController<int, CollectionInfo> pageController;
   int currentPage = 0;
 
   @override
@@ -37,7 +42,7 @@ class _CollectionListState extends ConsumerState<CollectionList> {
     super.initState();
     currentPage = widget.firstPage;
     pageController =
-        PagingController<int, Article>(firstPageKey: widget.firstPage);
+        PagingController<int, CollectionInfo>(firstPageKey: widget.firstPage);
     pageController.addPageRequestListener((pageKey) {
       currentPage = pageKey;
       WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
@@ -72,8 +77,8 @@ class _CollectionListState extends ConsumerState<CollectionList> {
 
     ref.listen(currentUserProvider, (previous, next) {
       pageController.itemList = pageController.itemList!
-          .where(
-              (element) => next?.collectIds.contains(element.originId) ?? false)
+          .where((element) =>
+              next?.collectIds.contains(element.originId ?? -1) ?? false)
           .toList();
     });
 
@@ -81,14 +86,14 @@ class _CollectionListState extends ConsumerState<CollectionList> {
         onRefresh: () => Future.sync(
               () => pageController.refresh(),
             ),
-        child: PagedListView<int, Article>.separated(
+        child: PagedListView<int, CollectionInfo>.separated(
           pagingController: pageController,
-          builderDelegate: PagedChildBuilderDelegate<Article>(
+          builderDelegate: PagedChildBuilderDelegate<CollectionInfo>(
               itemBuilder: (context, article, index) =>
                   ProviderScope(overrides: [
                     articleSourceProvider
                         .overrideWith((ref) => (ArticleSource.collection, null))
-                  ], child: ArticleItem(article: article)),
+                  ], child: CollectionListItem(collection: article)),
               firstPageProgressIndicatorBuilder: (_) => const LoadingView(),
               firstPageErrorIndicatorBuilder: (_) => ErrorView(
                     error: pageController.error,

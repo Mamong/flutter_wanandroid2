@@ -18,7 +18,7 @@ class CollectionLoading extends CollectionState {
 class CollectionFetched extends CollectionState {
   const CollectionFetched({required this.list, this.hasMore = true});
 
-  final List<Article> list;
+  final List<CollectionInfo> list;
   final bool hasMore;
 
   @override

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 abstract class TextStyles {
@@ -22,5 +21,16 @@ abstract class TextStyles {
     fontSize: 16,
     fontWeight: FontWeight.w400, // regular
     height: 1.5, // 24px
+  );
+
+  /// weight: w600
+  ///
+  /// size: 20
+  ///
+  /// height: 1.5 >> 30px
+  static const TextStyle buttonTextHeadingSemiBold = TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeight.w600, // semi bold
+    height: 1.5, // 30px
   );
 }

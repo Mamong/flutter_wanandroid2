@@ -1,4 +1,6 @@
 {
+   "onBoardingSkip": "跳过",
+   "onBoardingEnter": "进入",
    "tips_login": "请先登录",
    "language": "多语言",
    "search_placeholder": "搜索更多干货",

@@ -7,6 +7,7 @@ class Article {
   final bool collect;
   final String desc;
   final String envelopePic;
+  final bool fresh;
   final int id;
   final String link;
   final String niceDate;
@@ -32,6 +33,7 @@ class Article {
     required this.chapterName,
     required this.collect,
     required this.desc,
+    required this.fresh,
     required this.envelopePic,
     required this.id,
     required this.link,

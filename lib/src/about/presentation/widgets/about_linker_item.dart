@@ -1,20 +1,20 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:go_router/go_router.dart';
 import 'package:flutter_wanandroid2/core/res/styles/colors.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AboutLinkerItem extends StatefulWidget {
   const AboutLinkerItem({
     required this.title,
     required this.content,
-    this.isLink = true,
+    this.link,
     super.key,
   });
 
   final String title;
   final String content;
-  final bool isLink;
+  final String? link;
 
   @override
   State<StatefulWidget> createState() => _AboutLinkerItemState();
@@ -27,10 +27,7 @@ class _AboutLinkerItemState extends State<AboutLinkerItem> {
   void initState() {
     super.initState();
     tapGestureRecognizer.onTap = () {
-      context.push(Uri(
-              path: "/webview",
-              queryParameters: {'title': widget.title, 'url': widget.content})
-          .toString());
+      if (widget.link != null) launchUrl(Uri.parse(widget.link!));
     };
   }
 
@@ -53,11 +50,11 @@ class _AboutLinkerItemState extends State<AboutLinkerItem> {
               text: widget.content,
               style: TextStyle(
                   color: themeColor,
-                  decoration: widget.isLink
+                  decoration: widget.link != null
                       ? TextDecoration.underline
                       : TextDecoration.none,
                   decorationColor: themeColor),
-              recognizer: widget.isLink ? tapGestureRecognizer : null),
+              recognizer: widget.link != null ? tapGestureRecognizer : null),
         ]));
   }
 }

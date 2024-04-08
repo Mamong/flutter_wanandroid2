@@ -1,9 +1,9 @@
 import 'package:flutter_wanandroid2/core/utils/typedefs.dart';
-import 'package:flutter_wanandroid2/src/article/data/models/article_model.dart';
+import 'package:flutter_wanandroid2/src/collection/data/models/collection_model.dart';
 import 'package:flutter_wanandroid2/src/article/data/models/paginated_resp_model.dart';
-import 'package:flutter_wanandroid2/src/article/domain/entities/article.dart';
 import 'package:flutter_wanandroid2/src/article/domain/entities/paginated_resp.dart';
 import 'package:flutter_wanandroid2/src/collection/data/datasources/collection_remote_data_src.dart';
+import 'package:flutter_wanandroid2/src/collection/domain/entities/collection.dart';
 import 'package:flutter_wanandroid2/src/collection/domain/repos/collection_repo.dart';
 
 class CollectionRepoImpl with ResultExt implements CollectionRepo {
@@ -26,13 +26,13 @@ class CollectionRepoImpl with ResultExt implements CollectionRepo {
   }
 
   @override
-  ResultFuture<PaginatedResp<Article>> getCollectArticles(
+  ResultFuture<PaginatedResp<CollectionInfo>> getCollectArticles(
       {int page = 0, int pageSize = 10, bool forceRefresh = true}) async {
     return await guard(() async {
       final result = await _remoteDataSource.getCollectArticles(
           page: page, pageSize: pageSize);
-      return result
-          .toDomainModel<Article, ArticleModel>((e) => e.toDomainModel());
+      return result.toDomainModel<CollectionInfo, CollectionModel>(
+          (e) => e.toDomainModel());
     });
   }
 

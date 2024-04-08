@@ -1,10 +1,11 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_wanandroid2/core/common/singletons/cache.dart';
 import 'package:flutter_wanandroid2/core/utils/enums/language_enum.dart';
+import 'package:flutter_wanandroid2/src/auth/domain/entities/user.dart';
 import 'package:key_value_storage/key_value_storage.dart';
-
-import '../../src/auth/domain/entities/user.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 // final appServiceProvider =
 //     Provider<AppStorageService>((ref) => AppStorageService(ref));
@@ -13,7 +14,7 @@ import '../../src/auth/domain/entities/user.dart';
 class AppStorageService {
   AppStorageService(this.storageService);
 
-  late final StorageService  storageService;
+  late final StorageService storageService;
 
   Future<String> getTheme() async {
     // final storageService = ref.read(storageServiceProvider).requireValue;
@@ -42,6 +43,7 @@ class AppStorageService {
       themeColor = 0xFF2196F3;
       storageService.set(APP_THEME_COLOR_STORAGE_KEY, themeColor);
     }
+    Cache.instance.themeColor = Color(themeColor);
     return themeColor;
   }
 
@@ -59,6 +61,7 @@ class AppStorageService {
       language = Language.zhCN.code;
       storageService.set(APP_LANGUAGE_STORAGE_KEY, language);
     }
+    Cache.instance.language = language;
     return language;
   }
 
@@ -81,7 +84,9 @@ class AppStorageService {
     // final storageService = ref.read(storageServiceProvider).requireValue;
     final json = await storageService.get(APP_USERINFO_STORAGE_KEY) as String?;
     if (json != null) {
-      return User.fromJson(jsonDecode(json));
+      final user = User.fromJson(jsonDecode(json));
+      Cache.instance.user = user;
+      return user;
     } else {
       return null;
     }
@@ -97,6 +102,21 @@ class AppStorageService {
     // final storageService = ref.read(storageServiceProvider).requireValue;
     await storageService.remove(APP_USERINFO_STORAGE_KEY);
   }
+
+  Future<String?> getLastInstallVersion() async {
+    final version = await storageService.get(APP_LAST_INSTALL_VERSION_KEY);
+    Cache.instance.lastVersion = version;
+    return version;
+  }
+
+  Future<void> cacheVersion() async {
+    PackageInfo packageInfo = await PackageInfo.fromPlatform();
+    // String appName = packageInfo.appName;
+    // String packageName = packageInfo.packageName;
+    String version = packageInfo.version;
+    // String buildNumber = packageInfo.buildNumber;
+    await storageService.set(APP_LAST_INSTALL_VERSION_KEY, version);
+  }
 }
 
 const APP_THEME_STORAGE_KEY = "APP_THEME_STORAGE_KEY";
@@ -104,3 +124,4 @@ const APP_THEME_COLOR_STORAGE_KEY = "APP_THEME_COLOR_STORAGE_KEY";
 const APP_LANGUAGE_STORAGE_KEY = "APP_LANGUAGE_STORAGE_KEY";
 const APP_USERINFO_STORAGE_KEY = "APP_USERINFO_STORAGE_KEY";
 const APP_TOKEN_STORAGE_KEY = "APP_TOKEN_STORAGE_KEY";
+const APP_LAST_INSTALL_VERSION_KEY = 'APP_LAST_INSTALL_VERSION_KEY';

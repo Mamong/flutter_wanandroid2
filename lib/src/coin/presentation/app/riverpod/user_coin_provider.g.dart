@@ -6,7 +6,7 @@ part of 'user_coin_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$userCoinHash() => r'013a9ad168d095c269e404bc7e06ea8370660c57';
+String _$userCoinHash() => r'8a5fc38d0f515b8bee67d85d966cd7e1a9918ce1';
 
 /// Copied from Dart SDK
 class _SystemHash {

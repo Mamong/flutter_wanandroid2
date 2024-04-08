@@ -41,18 +41,20 @@ class AboutScreen extends StatelessWidget {
                 children: [
                   AboutLinkerItem(
                     title: l10n.about_email,
-                    content: Constants.csdnStr,
-                    isLink: false,
+                    content: Constants.qqEmail,
+                    link: "mailto://${Constants.qqEmail}",
                   ),
                   Gap(50.w),
                   const AboutLinkerItem(
                     title: "CSDN",
                     content: Constants.csdnStr,
+                    link: Constants.csdnStr,
                   ),
                   Gap(50.w),
                   const AboutLinkerItem(
                     title: "GitHub",
                     content: Constants.gitHubStr,
+                    link: Constants.gitHubStr,
                   ),
                 ],
               ),

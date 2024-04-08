@@ -5,6 +5,12 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
+  String get onBoardingSkip => 'Skip';
+
+  @override
+  String get onBoardingEnter => 'Get Started';
+
+  @override
   String get tips_login => 'Please login first';
 
   @override

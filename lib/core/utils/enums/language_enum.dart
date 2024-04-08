@@ -8,3 +8,5 @@ enum Language {
 
   const Language({required this.title, required this.code});
 }
+
+enum AppInstallStatus { newInstall, upgrade, normal, downgrade }

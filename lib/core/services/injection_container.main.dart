@@ -22,13 +22,11 @@ Future<void> _cacheInit() async {
     ..registerLazySingleton<StorageService>(() => prefsService)
     ..registerLazySingleton<HiveStorageService>(() => hiveService);
 
-  final user = await sl<AppStorageService>().getUserInfo();
-  final language = await sl<AppStorageService>().getLanguage();
-  final themeColor = await sl<AppStorageService>().getThemeColor();
-
-  Cache.instance.user = user;
-  Cache.instance.language = language;
-  Cache.instance.themeColor = Color(themeColor);
+  await sl<AppStorageService>().getUserInfo();
+  await sl<AppStorageService>().getLanguage();
+  await sl<AppStorageService>().getThemeColor();
+  await sl<AppStorageService>().getLastInstallVersion();
+  await Cache.instance.loadAppInfo();
 }
 
 Future<void> _authInit() async {

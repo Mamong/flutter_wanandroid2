@@ -120,3 +120,4 @@ build-runner:
 #flutter gen-l10n
 #
 #dart run flutter_native_splash:create
+#flutter pub run flutter_launcher_icons
