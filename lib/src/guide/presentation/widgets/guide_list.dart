@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
+import 'package:scrollable_positioned_list_extended/scrollable_positioned_list_extended.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_wanandroid2/core/common/widgets/indicators.dart';
@@ -65,7 +65,11 @@ class _GuideListState extends ConsumerState<GuideList> {
           index: index,
           duration: const Duration(milliseconds: 300),
           curve: Curves.easeInOutCubic);
-    } else {}
+    } else {
+      controller.scrollToMax(
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.easeInOutCubic);
+    }
   }
 
   (int?, int?) getVisibleRange(ItemScrollController controller) {

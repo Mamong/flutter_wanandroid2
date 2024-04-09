@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
-import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:flutter_wanandroid2/core/common/widgets/indicators/error_view.dart';
 import 'package:flutter_wanandroid2/core/common/widgets/indicators/loading_view.dart';
 import 'package:flutter_wanandroid2/src/guide/presentation/app/riverpod/guide_list_provider.dart';
 import 'package:flutter_wanandroid2/src/guide/presentation/widgets/guide_detail_section.dart';
+import 'package:scrollable_positioned_list_extended/scrollable_positioned_list_extended.dart';
 
 class GuideDetailList extends ConsumerWidget {
   const GuideDetailList(
