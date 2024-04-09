@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gap/gap.dart';
 import 'package:flutter_wanandroid2/core/common/widgets/skeleton.dart';
 import 'package:flutter_wanandroid2/l10n/app_localizations.dart';
 import 'package:flutter_wanandroid2/src/coin/domain/entities/coin_info.dart';
 import 'package:flutter_wanandroid2/src/coin/presentation/app/riverpod/user_coin_provider.dart';
-import 'package:gap/gap.dart';
 
 class CoinDetailHeader extends ConsumerWidget {
   const CoinDetailHeader({super.key});

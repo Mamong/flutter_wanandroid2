@@ -47,7 +47,6 @@ class CoinDetailItemSkeleton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // color: Colors.white,
       decoration: const BottomBorderDecoration(),
       padding: const EdgeInsets.all(14),
       child: const Row(
