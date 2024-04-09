@@ -13,7 +13,7 @@ class SettingsScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(l10n.menu_settings),
       ),
-      body: SettingsOptions(),
+      body: const SettingsOptions(),
     );
   }
 }
