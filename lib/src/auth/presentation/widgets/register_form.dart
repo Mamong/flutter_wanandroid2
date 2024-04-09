@@ -28,6 +28,10 @@ class _RegisterFormState extends ConsumerState<RegisterForm> {
   final obscurePasswordNotifier = ValueNotifier(true);
   final obscurePasswordAgainNotifier = ValueNotifier(true);
 
+  /// StatefulBuilder compares with ValueListenableBuilder
+  /// do not need to dispose the notifier, but can only update widget in builder
+  var obscureTextAgain = true;
+
   @override
   void initState() {
     super.initState();
@@ -114,7 +118,9 @@ class _RegisterFormState extends ConsumerState<RegisterForm> {
                               hintText: l10n.login_pwd,
                               icon: const Icon(Icons.lock),
                               suffix: IconButton(
-                                icon: const Icon(Icons.remove_red_eye),
+                                icon: Icon(value
+                                    ? Icons.visibility_off
+                                    : Icons.visibility),
                                 onPressed: () {
                                   obscurePasswordNotifier.value = !value;
                                 },
@@ -128,33 +134,63 @@ class _RegisterFormState extends ConsumerState<RegisterForm> {
                             },
                           );
                         }),
-                    ValueListenableBuilder(
-                        valueListenable: obscurePasswordAgainNotifier,
-                        builder: (_, value, __) {
-                          return TextFormField(
-                            focusNode: lastFocusNode,
-                            autofocus: true,
-                            obscureText: value,
-                            controller: passwordAgainController,
-                            decoration: InputDecoration(
-                              //labelText: l10n.register_confirm_pwd,
-                              hintText: l10n.register_confirm_pwd,
-                              icon: const Icon(Icons.lock),
-                              suffix: IconButton(
-                                icon: const Icon(Icons.remove_red_eye),
-                                onPressed: () {
-                                  obscurePasswordAgainNotifier.value = !value;
-                                },
-                              ),
-                            ),
-                            validator: (v) {
-                              if (v == null || v.trim().isEmpty) {
-                                return l10n.tips_pwd_confirm_empty;
-                              }
-                              return null;
+                    StatefulBuilder(builder: (context, setInnerState) {
+                      return TextFormField(
+                        focusNode: lastFocusNode,
+                        autofocus: true,
+                        obscureText: obscureTextAgain,
+                        controller: passwordAgainController,
+                        decoration: InputDecoration(
+                          hintText: l10n.register_confirm_pwd,
+                          icon: const Icon(Icons.lock),
+                          suffix: IconButton(
+                            icon: Icon(obscureTextAgain
+                                ? Icons.visibility_off
+                                : Icons.visibility),
+                            onPressed: () {
+                              setInnerState(() {
+                                obscureTextAgain = !obscureTextAgain;
+                              });
                             },
-                          );
-                        }),
+                          ),
+                        ),
+                        validator: (v) {
+                          if (v == null || v.trim().isEmpty) {
+                            return l10n.tips_pwd_confirm_empty;
+                          }
+                          return null;
+                        },
+                      );
+                    }),
+                    // ValueListenableBuilder(
+                    //     valueListenable: obscurePasswordAgainNotifier,
+                    //     builder: (_, value, __) {
+                    //       return TextFormField(
+                    //         focusNode: lastFocusNode,
+                    //         autofocus: true,
+                    //         obscureText: value,
+                    //         controller: passwordAgainController,
+                    //         decoration: InputDecoration(
+                    //           //labelText: l10n.register_confirm_pwd,
+                    //           hintText: l10n.register_confirm_pwd,
+                    //           icon: const Icon(Icons.lock),
+                    //           suffix: IconButton(
+                    //             icon: Icon(value
+                    //                                     ? Icons.visibility_off
+                    //                                     : Icons.visibility),
+                    //             onPressed: () {
+                    //               obscurePasswordAgainNotifier.value = !value;
+                    //             },
+                    //           ),
+                    //         ),
+                    //         validator: (v) {
+                    //           if (v == null || v.trim().isEmpty) {
+                    //             return l10n.tips_pwd_confirm_empty;
+                    //           }
+                    //           return null;
+                    //         },
+                    //       );
+                    //     }),
                     Gap(60.w),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 50.w),

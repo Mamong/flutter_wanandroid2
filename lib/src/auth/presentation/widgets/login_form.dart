@@ -73,7 +73,6 @@ class _LoginFormState extends ConsumerState<LoginForm> {
                   autofocus: true,
                   controller: unameController,
                   decoration: InputDecoration(
-                      //labelText: l10n.login_userName,
                       hintText: l10n.login_userName,
                       icon: const Icon(Icons.person)),
                   validator: (v) {
@@ -90,7 +89,6 @@ class _LoginFormState extends ConsumerState<LoginForm> {
                         obscureText: value,
                         controller: passwordController,
                         decoration: InputDecoration(
-                          //labelText: l10n.login_pwd,
                           hintText: l10n.login_pwd,
                           icon: const Icon(Icons.lock),
                           suffix: IconButton(
