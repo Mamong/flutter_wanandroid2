@@ -29,7 +29,7 @@ import 'package:flutter_wanandroid2/src/collection/domain/usecases/collect_artic
 import 'package:flutter_wanandroid2/src/collection/domain/usecases/get_collect_articles.dart';
 import 'package:flutter_wanandroid2/src/collection/domain/usecases/uncollect_article.dart';
 import 'package:flutter_wanandroid2/src/collection/domain/usecases/uncollect_my_article.dart';
-import 'package:flutter_wanandroid2/src/home/data/datsources/home_remote_data_src.dart';
+import 'package:flutter_wanandroid2/src/home/data/datasources/home_remote_data_src.dart';
 import 'package:flutter_wanandroid2/src/home/data/repos/home_repo_impl.dart';
 import 'package:flutter_wanandroid2/src/home/domain/repos/home_repo.dart';
 import 'package:flutter_wanandroid2/src/home/domain/usecases/get_banner.dart';
