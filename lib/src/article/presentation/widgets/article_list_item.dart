@@ -74,7 +74,7 @@ class ArticleListItem extends ConsumerWidget {
                                 width: 120.w,
                                 height: 120.w,
                                 color: source == ArticleSource.wxarticle
-                                    ? Colours.WX_GREEN
+                                    ? Colours.wxGreen
                                     : Constants.chapterBgColor[article.id % 10],
                                 child: Center(
                                   child: Text(

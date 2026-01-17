@@ -4,30 +4,30 @@ import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
 import 'package:dio_cookie_manager/dio_cookie_manager.dart';
-import 'package:dio_http2_adapter/dio_http2_adapter.dart';
+// import 'package:dio_http2_adapter/dio_http2_adapter.dart';
 
-import 'dio_cache_interceptors.dart';
-import 'dio_interceptors.dart';
-import 'dio_log_interceptors.dart';
+// import 'dio_cache_interceptors.dart';
+// import 'dio_interceptors.dart';
+// import 'dio_log_interceptors.dart';
 import '../http_method.dart';
-import 'dio_token_interceptors.dart';
+// import 'dio_token_interceptors.dart';
 import 'dio_transformer.dart';
 
 class DioUtil {
   /// 请求的URL前缀
-  static String BASE_URL = "http://localhost:8080";
+  static String baseURL = "http://localhost:8080";
 
   /// 连接超时时间
-  static const int CONNECT_TIMEOUT = 6;
+  static const int connectTimeout = 6;
 
   /// 响应超时时间
-  static const int RECEIVE_TIMEOUT = 6;
+  static const int receiveTimeout = 6;
 
   /// 是否开启网络缓存,默认false
-  static bool CACHE_ENABLE = false;
+  static bool cacheEnable = false;
 
   /// 最大缓存时间(按秒), 默认缓存七天,可自行调节
-  static int MAX_CACHE_AGE = 7 * 24 * 60 * 60;
+  static int maxCacheAge = 7 * 24 * 60 * 60;
 
 
   static Dio _dio = Dio();
@@ -47,11 +47,11 @@ class DioUtil {
 
   Dio configDio(
       {required String baseUrl,
-      int connectTimeout = CONNECT_TIMEOUT,
-      int receiveTimeout = RECEIVE_TIMEOUT}) {
+      int connectTimeout = connectTimeout,
+      int receiveTimeout = receiveTimeout}) {
     /// 初始化基本选项
     BaseOptions options = BaseOptions(
-        baseUrl: BASE_URL,
+        baseUrl: baseURL,
         connectTimeout: Duration(seconds: connectTimeout),
         receiveTimeout: Duration(seconds: receiveTimeout));
 
@@ -124,7 +124,7 @@ class DioUtil {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    const _methodValues = {
+    const methodValues = {
       HTTPMethod.get: 'get',
       HTTPMethod.post: 'post',
       HTTPMethod.put: 'put',
@@ -133,7 +133,7 @@ class DioUtil {
       HTTPMethod.head: 'head'
     };
 
-    options ??= Options(method: _methodValues[method]);
+    options ??= Options(method: methodValues[method]);
     try {
       Response response;
       response = await _dio.request(path,

@@ -221,7 +221,7 @@ class _RegisterFormState extends ConsumerState<RegisterForm> {
                     RichText(
                       text: TextSpan(
                           style: TextStyle(
-                              fontSize: 28.w, color: Colours.TEXT_LIGHT),
+                              fontSize: 28.w, color: Colours.textLight),
                           children: [
                             TextSpan(text: l10n.register_to_login),
                             TextSpan(

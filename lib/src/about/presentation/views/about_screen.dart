@@ -32,7 +32,7 @@ class AboutScreen extends StatelessWidget {
               Gap(20.w),
               Text(
                 l10n.about_desc,
-                style: TextStyle(color: Colours.MAIN_TEXT, fontSize: 30.w),
+                style: TextStyle(color: Colours.mainText, fontSize: 30.w),
               ),
               Gap(100.w),
               Column(
@@ -61,7 +61,7 @@ class AboutScreen extends StatelessWidget {
               const Spacer(),
               Text(
                 l10n.about_bottom,
-                style: TextStyle(color: Colours.MAIN_TEXT, fontSize: 26.w),
+                style: TextStyle(color: Colours.mainText, fontSize: 26.w),
               ),
               Gap(50.w),
             ],

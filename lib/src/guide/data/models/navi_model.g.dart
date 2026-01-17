@@ -7,7 +7,7 @@ part of 'navi_model.dart';
 // **************************************************************************
 
 NaviModel _$NaviModelFromJson(Map<String, dynamic> json) => NaviModel(
-      cid: json['cid'] as int,
+      cid: (json['cid'] as num).toInt(),
       name: json['name'] as String,
       articles: (json['articles'] as List<dynamic>)
           .map((e) => ArticleModel.fromJson(e as Map<String, dynamic>))

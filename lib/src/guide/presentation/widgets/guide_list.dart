@@ -148,7 +148,7 @@ class _GuideListState extends ConsumerState<GuideList> {
           );
         },
         error: (error, stack) {
-          print(error);
+          debugPrint(error.toString());
           return ErrorView(
             error: error,
             onPressed: () => ref.invalidate(guideListProvider),

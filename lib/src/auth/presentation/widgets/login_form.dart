@@ -134,7 +134,7 @@ class _LoginFormState extends ConsumerState<LoginForm> {
                 RichText(
                   text: TextSpan(
                       style:
-                          TextStyle(fontSize: 28.w, color: Colours.TEXT_LIGHT),
+                          TextStyle(fontSize: 28.w, color: Colours.textLight),
                       children: [
                         TextSpan(text: l10n.login_to_register),
                         TextSpan(

@@ -17,8 +17,7 @@ class GetProjectArticles
 
 class GetProjectArticlesParams extends PaginatedParams {
   const GetProjectArticlesParams(
-      {required int page, required int pageSize, required this.cid})
-      : super(page: page, pageSize: pageSize);
+      {required super.page, required super.pageSize, required this.cid});
 
   final int cid;
 

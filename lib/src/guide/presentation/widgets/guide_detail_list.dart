@@ -35,7 +35,7 @@ class GuideDetailList extends ConsumerWidget {
           );
         },
         error: (error, stack) {
-          print(error.toString());
+          debugPrint(error.toString());
           return ErrorView(
             error: error,
             onPressed: () => ref.invalidate(guideListProvider),

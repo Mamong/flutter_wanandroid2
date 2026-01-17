@@ -16,7 +16,7 @@ class SearchResultScreen extends StatelessWidget {
       ),
       body: ProviderScope(overrides: [
         articleSourceProvider.overrideWith((ref) => (ArticleSource.search, k))
-      ], child: ArticleList()),
+      ], child: const ArticleList()),
     );
   }
 }

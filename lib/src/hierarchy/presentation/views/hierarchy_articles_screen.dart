@@ -38,7 +38,7 @@ class HierarchyArticlesScreen extends ConsumerWidget {
                         child: ProviderScope(overrides: [
                       articleSourceProvider.overrideWith(
                           (ref) => (ArticleSource.hierarchy, e.id))
-                    ], child: ArticleList())))
+                    ], child: const ArticleList())))
                 .toList(),
           ),
         ));

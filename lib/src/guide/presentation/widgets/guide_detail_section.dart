@@ -24,7 +24,7 @@ class GuideDetailSection extends StatelessWidget {
             section.name,
             textAlign: TextAlign.center,
             style: TextStyle(
-                color: Colours.MAIN_TEXT,
+                color: Colours.mainText,
                 fontSize: 32.w,
                 fontWeight: FontWeight.bold),
           ),

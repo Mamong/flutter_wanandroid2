@@ -8,16 +8,18 @@ part of 'user.dart';
 
 User _$UserFromJson(Map<String, dynamic> json) => User(
       admin: json['admin'] as bool,
-      chapterTops:
-          (json['chapterTops'] as List<dynamic>).map((e) => e as int).toList(),
-      coinCount: json['coinCount'] as int,
-      collectIds:
-          (json['collectIds'] as List<dynamic>).map((e) => e as int).toList(),
+      chapterTops: (json['chapterTops'] as List<dynamic>)
+          .map((e) => (e as num).toInt())
+          .toList(),
+      coinCount: (json['coinCount'] as num).toInt(),
+      collectIds: (json['collectIds'] as List<dynamic>)
+          .map((e) => (e as num).toInt())
+          .toList(),
       email: json['email'] as String,
       icon: json['icon'] as String,
-      id: json['id'] as int,
+      id: (json['id'] as num).toInt(),
       nickname: json['nickname'] as String,
-      type: json['type'] as int,
+      type: (json['type'] as num).toInt(),
       token: json['token'] as String,
       username: json['username'] as String,
     );

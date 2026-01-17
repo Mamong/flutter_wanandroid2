@@ -10,5 +10,5 @@ CoinDetailModel _$CoinDetailModelFromJson(Map<String, dynamic> json) =>
     CoinDetailModel(
       reason: json['reason'] as String,
       desc: json['desc'] as String,
-      coinCount: json['coinCount'] as int,
+      coinCount: (json['coinCount'] as num).toInt(),
     );

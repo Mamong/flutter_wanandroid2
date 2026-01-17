@@ -6,7 +6,7 @@ part of 'collection_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$collectionHash() => r'91167f455bdff08a584e45a3e6c343240e22e798';
+String _$collectionHash() => r'98014d0227cc351a7fd905a0a76f6ac25fb6dc48';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -157,6 +157,8 @@ class CollectionProvider
   }
 }
 
+@Deprecated('Will be removed in 3.0. Use Ref instead')
+// ignore: unused_element
 mixin CollectionRef on AutoDisposeNotifierProviderRef<CollectionState> {
   /// The parameter `familyKey` of this provider.
   GlobalKey<State<StatefulWidget>>? get familyKey;
@@ -172,4 +174,4 @@ class _CollectionProviderElement
       (origin as CollectionProvider).familyKey;
 }
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

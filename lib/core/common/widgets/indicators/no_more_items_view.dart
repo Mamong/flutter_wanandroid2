@@ -13,7 +13,7 @@ class NoMoreItemsView extends StatelessWidget {
     var titleStyle = Theme.of(context)
         .textTheme
         .headlineSmall
-        ?.copyWith(color: Colors.grey.withOpacity(0.7), fontSize: 14);
+        ?.copyWith(color: Colors.grey.withValues(alpha: 0.7), fontSize: 14);
     return Center(
         child: Padding(
       padding: const EdgeInsets.symmetric(vertical: 24),

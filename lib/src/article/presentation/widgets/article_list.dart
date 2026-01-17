@@ -53,14 +53,14 @@ class _ArticleListState extends ConsumerState<ArticleList> {
         }
 
         if (_refreshController.isRefresh) {
-          print("isRefresh");
+          debugPrint("isRefresh");
           _refreshController.refreshCompleted();
         } else if (_refreshController.isLoading) {
-          print("isLoading");
+          debugPrint("isLoading");
           _refreshController.loadComplete();
         } else {
           // data arrives, but SmartRefresher is idle, for initialRefresh is false
-          print("is idle");
+          debugPrint("is idle");
           return;
         }
         if (next.requireValue.hasMore) {
@@ -100,7 +100,7 @@ class _ArticleListState extends ConsumerState<ArticleList> {
                     if (index == 0 && hasHeader) {
                       return widget.header;
                     }
-                    print("=====$index");
+                    debugPrint("=====$index");
                     return ProviderScope(overrides: [
                       indexProvider
                           .overrideWith((ref) => index - (hasHeader ? 1 : 0))
@@ -112,7 +112,7 @@ class _ArticleListState extends ConsumerState<ArticleList> {
         },
         //显示初次加载错误，一般用于恢复，譬如网络异常或者未登录等
         error: (Object error, StackTrace? stackTrace) {
-          print(stackTrace.toString());
+          debugPrint(stackTrace.toString());
           return ErrorView(
             error: error,
             onPressed: () {

@@ -6,29 +6,29 @@ import 'package:flutter_wanandroid2/core/utils/typedefs.dart';
 
 /// here we offer two usecase style: with exception or without exception
 /// usecase without exception, that is, exception will be packed into the result
-abstract class UsecaseWithParams<Type, Params> {
+abstract class UsecaseWithParams<Typo, Params> {
   const UsecaseWithParams();
 
-  ResultFuture<Type> call(Params params);
+  ResultFuture<Typo> call(Params params);
 }
 
-abstract class UsecaseWithoutParams<Type> {
+abstract class UsecaseWithoutParams<Typo> {
   const UsecaseWithoutParams();
 
-  ResultFuture<Type> call();
+  ResultFuture<Typo> call();
 }
 
 /// usecase with exception, that is, exception will be thrown
-abstract class UsecaseWithParamsExp<Type, Params> {
+abstract class UsecaseWithParamsExp<Typo, Params> {
   const UsecaseWithParamsExp();
 
-  Future<Type> call(Params params);
+  Future<Typo> call(Params params);
 }
 
-abstract class UsecaseWithoutParamsExp<Type> {
+abstract class UsecaseWithoutParamsExp<Typo> {
   const UsecaseWithoutParamsExp();
 
-  Future<Type> call();
+  Future<Typo> call();
 }
 
 class PaginatedParams extends Equatable {

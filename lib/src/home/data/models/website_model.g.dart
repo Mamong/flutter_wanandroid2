@@ -9,9 +9,9 @@ part of 'website_model.dart';
 WebsiteModel _$WebsiteModelFromJson(Map<String, dynamic> json) => WebsiteModel(
       category: json['category'] as String,
       icon: json['icon'] as String,
-      id: json['id'] as int,
+      id: (json['id'] as num).toInt(),
       link: json['link'] as String,
       name: json['name'] as String,
-      order: json['order'] as int,
-      visible: json['visible'] as int,
+      order: (json['order'] as num).toInt(),
+      visible: (json['visible'] as num).toInt(),
     );

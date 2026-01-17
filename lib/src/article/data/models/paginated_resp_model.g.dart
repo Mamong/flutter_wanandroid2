@@ -11,11 +11,11 @@ PaginatedRespModel<T> _$PaginatedRespModelFromJson<T>(
   T Function(Object? json) fromJsonT,
 ) =>
     PaginatedRespModel<T>(
-      curPage: json['curPage'] as int,
+      curPage: (json['curPage'] as num).toInt(),
       datas: (json['datas'] as List<dynamic>).map(fromJsonT).toList(),
-      offset: json['offset'] as int,
+      offset: (json['offset'] as num).toInt(),
       over: json['over'] as bool,
-      pageCount: json['pageCount'] as int,
-      size: json['size'] as int,
-      total: json['total'] as int,
+      pageCount: (json['pageCount'] as num).toInt(),
+      size: (json['size'] as num).toInt(),
+      total: (json['total'] as num).toInt(),
     );

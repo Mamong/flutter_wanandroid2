@@ -22,11 +22,11 @@ class CoinDetailItem extends StatelessWidget {
             children: [
               Text(
                 detail.reason,
-                style: TextStyle(fontSize: 30.w, color: Colours.MAIN_TEXT),
+                style: TextStyle(fontSize: 30.w, color: Colours.mainText),
               ),
               Gap(12.w),
               Text(detail.desc,
-                  style: TextStyle(fontSize: 28.w, color: Colours.TEXT_DARK)),
+                  style: TextStyle(fontSize: 28.w, color: Colours.textDark)),
             ],
           ),
           const Spacer(),
@@ -34,7 +34,7 @@ class CoinDetailItem extends StatelessWidget {
               style: TextStyle(
                   fontSize: 30.w,
                   fontWeight: FontWeight.bold,
-                  color: Colours.WX_GREEN)),
+                  color: Colours.wxGreen)),
         ],
       ),
     );

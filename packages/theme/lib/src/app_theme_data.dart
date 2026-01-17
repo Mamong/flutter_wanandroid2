@@ -51,11 +51,11 @@ class LightAppThemeData extends AppThemeData {
         //colorSchemeSeed: primarySwatch??Colors.blue,
         colorScheme: ColorScheme.fromSeed(
             seedColor: primarySwatch ?? Colors.blue,
-            background: const Color(0xfff1f2f3),
+            surface: const Color(0xfff1f2f3),
             error: Colors.red,
             onTertiary: Colors.orange),
         appBarTheme: AppBarTheme(
-            color: primarySwatch ?? Colors.blue,
+            backgroundColor: primarySwatch ?? Colors.blue,
             shadowColor: primarySwatch ?? Colors.blue,
             elevation: 1,
             foregroundColor: Colors.white),
@@ -140,20 +140,20 @@ class DarkAppThemeData extends AppThemeData {
 
 extension on Color {
   Map<int, Color> _toSwatch() => {
-        50: withOpacity(0.1),
-        100: withOpacity(0.2),
-        200: withOpacity(0.3),
-        300: withOpacity(0.4),
-        400: withOpacity(0.5),
-        500: withOpacity(0.6),
-        600: withOpacity(0.7),
-        700: withOpacity(0.8),
-        800: withOpacity(0.9),
+        50: withValues(alpha: 0.1),
+        100: withValues(alpha: 0.2),
+        200: withValues(alpha: 0.3),
+        300: withValues(alpha: 0.4),
+        400: withValues(alpha: 0.5),
+        500: withValues(alpha: 0.6),
+        600: withValues(alpha: 0.7),
+        700: withValues(alpha: 0.8),
+        800: withValues(alpha: 0.9),
         900: this,
       };
 
   MaterialColor toMaterialColor() => MaterialColor(
-        value,
+        toARGB32(),
         _toSwatch(),
       );
 }

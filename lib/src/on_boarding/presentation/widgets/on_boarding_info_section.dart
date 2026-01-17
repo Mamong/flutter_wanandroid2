@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_wanandroid2/core/res/media.dart';
 import 'package:flutter_wanandroid2/l10n/app_localizations.dart';
@@ -57,8 +56,8 @@ class OnBoardingInfoSection extends StatelessWidget {
                   style: TextStyles.headingBold.copyWith(
                     color: adaptiveColour,
                   ),
-                  children: [
-                    const TextSpan(
+                  children: const [
+                    TextSpan(
                       text: "Riverpod.",
                       style: TextStyle(
                         color: Colours.lightThemeSecondaryColour,

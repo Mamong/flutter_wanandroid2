@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter_wanandroid2/core/extensions/context_ext.dart';
 import 'package:flutter_wanandroid2/core/extensions/textstyle_ext.dart';
 import 'package:flutter_wanandroid2/core/res/styles/text.dart';
 import 'package:flutter_wanandroid2/core/services/router.dart';

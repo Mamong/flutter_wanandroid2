@@ -17,8 +17,7 @@ class GetWxArticles
 
 class GetWxArticlesParams extends PaginatedParams {
   const GetWxArticlesParams(
-      {required int page, required int pageSize, required this.id})
-      : super(page: page, pageSize: pageSize);
+      {required super.page, required super.pageSize, required this.id});
 
   final int id;
 

@@ -1,4 +1,8 @@
+// ignore: unused_import
+import 'package:intl/intl.dart' as intl;
 import 'app_localizations.dart';
+
+// ignore_for_file: type=lint
 
 /// The translations for English (`en`).
 class AppLocalizationsEn extends AppLocalizations {
@@ -35,7 +39,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get about_email => 'Email';
 
   @override
-  String get about_bottom => 'This project is for learning purposes only, not for commercial purposes';
+  String get about_bottom =>
+      'This project is for learning purposes only, not for commercial purposes';
 
   @override
   String get menu_points_details => 'Points details';

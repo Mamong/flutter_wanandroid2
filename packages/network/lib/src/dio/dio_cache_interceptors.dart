@@ -1,4 +1,3 @@
-import 'dart:collection';
 import 'dart:convert';
 import 'dart:developer';
 import 'package:clock/clock.dart';
@@ -11,7 +10,7 @@ import 'dio_util.dart';
 
 class DioCacheInterceptors extends Interceptor {
   // 为确保迭代器顺序和对象插入时间一致顺序一致，我们使用LinkedHashMap
-  var cache = LinkedHashMap<String, CachedResponse>();
+  var cache = <String, CachedResponse>{};
 
   /// Creates new instance of [CacheInterceptor]
   DioCacheInterceptors(this.storageService);
@@ -46,7 +45,7 @@ class DioCacheInterceptors extends Interceptor {
   @override
   void onRequest(
       RequestOptions options, RequestInterceptorHandler handler) async {
-    if (!DioUtil.CACHE_ENABLE ||
+    if (!DioUtil.cacheEnable ||
         options.extra["noCache"] == true ||
         options.method.toLowerCase() != 'get') {
       return handler.next(options);
@@ -89,7 +88,7 @@ class DioCacheInterceptors extends Interceptor {
   void onResponse(Response response, ResponseInterceptorHandler handler) {
     //不缓存的情况去掉
     RequestOptions options = response.requestOptions;
-    if (!DioUtil.CACHE_ENABLE ||
+    if (!DioUtil.cacheEnable ||
         options.extra["noCache"] == true ||
         options.method.toLowerCase() != "get") {
       return handler.next(response);
@@ -124,7 +123,7 @@ class DioCacheInterceptors extends Interceptor {
       DioException err, ErrorInterceptorHandler handler) async {
     //不缓存的情况去掉
     RequestOptions options = err.requestOptions;
-    if (!DioUtil.CACHE_ENABLE ||
+    if (!DioUtil.cacheEnable ||
         options.extra["noCache"] == true ||
         options.method.toLowerCase() != "get") {
       return handler.next(err);
@@ -155,10 +154,10 @@ class DioCacheInterceptors extends Interceptor {
     return handler.next(err);
   }
 
-  _saveCache(String key, CachedResponse object) {
+  void _saveCache(String key, CachedResponse object) {
     // 如果缓存数量超过最大数量限制，则先移除最早的一条记录
     if (cache.length == Configs.maxMemoryCacheCount) {
-      cache.remove(cache[cache.keys.first]);
+      cache.remove(cache.keys.first);
     }
     cache[key] = object;
   }

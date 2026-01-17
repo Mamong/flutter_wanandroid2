@@ -63,7 +63,7 @@ class _CollectionListState extends ConsumerState<CollectionList> {
         (previous, next) {
       if (next is CollectionError) {
         pageController.error = next.message;
-        CoreUtils.showSnackBar(context, message: "${next.message}");
+        CoreUtils.showSnackBar(context, message: next.message);
       } else if (next is CollectionFetched) {
         final articles = next.list;
         if (next.hasMore) {

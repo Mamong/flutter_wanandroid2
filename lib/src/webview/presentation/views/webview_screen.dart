@@ -25,7 +25,7 @@ class _WebViewState extends State<WebViewScreen> {
       ..setNavigationDelegate(
         NavigationDelegate(
           onProgress: (int progress) {
-            print("progress:$progress");
+            debugPrint("progress:$progress");
           },
           onPageStarted: (String url) {
             loadingNotifier.value = true;
@@ -35,7 +35,7 @@ class _WebViewState extends State<WebViewScreen> {
           },
           onWebResourceError: (WebResourceError error) {
             loadingNotifier.value = false;
-            print(error.description);
+            debugPrint(error.description);
           },
           onNavigationRequest: (NavigationRequest request) {
             return NavigationDecision.navigate;

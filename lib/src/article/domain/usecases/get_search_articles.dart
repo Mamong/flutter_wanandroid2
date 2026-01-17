@@ -16,8 +16,7 @@ class GetSearchArticles
 
 class GetSearchArticlesParams extends PaginatedParams {
   const GetSearchArticlesParams(
-      {required int page, required int pageSize, required this.k})
-      : super(page: page, pageSize: pageSize);
+      {required super.page, required super.pageSize, required this.k});
 
   final String k;
 

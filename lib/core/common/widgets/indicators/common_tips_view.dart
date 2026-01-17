@@ -23,7 +23,7 @@ class CommonTipsView extends StatelessWidget {
     var titleStyle =
         Theme.of(context).textTheme.headlineSmall?.copyWith(color: Colors.grey);
     var messageStyle = titleStyle?.copyWith(
-        color: titleStyle.color?.withOpacity(0.7), fontSize: 14);
+        color: titleStyle.color?.withValues(alpha: 0.7), fontSize: 14);
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,

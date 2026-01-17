@@ -9,7 +9,7 @@ mixin ResultExt{
   ResultFuture<T> guard<T>(Future<T> Function() future) async {
     try {
       return Right(await future());
-    } on ServerException catch (err, stack) {
+    } on ServerException catch (err) {
       return Left(err);
     }
   }

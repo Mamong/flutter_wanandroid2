@@ -3,22 +3,22 @@ import 'package:flutter_wanandroid2/core/utils/core_utils.dart';
 
 abstract class Colours {
 
-  static const Color MAIN_TEXT = Color(0xFF222222);
-  static const Color TEXT_DARK = Color(0xFF666666);
-  static const Color TEXT_LIGHT = Color(0xFF999999);
+  static const Color mainText = Color(0xFF222222);
+  static const Color textDark = Color(0xFF666666);
+  static const Color textLight = Color(0xFF999999);
   // 页面中分割线颜色
-  static const Color SPLIT_LINE = Color(0xFFE8E8E8);
+  static const Color splitLine = Color(0xFFE8E8E8);
   // 所有页面背景颜色
-  static const Color DEFAULT_BG = Color(0xFFf1f2f3);
+  static const Color defaultBg = Color(0xFFf1f2f3);
   // 收藏颜色
-  static const Color COLLECT = Color(0xFFFA8072);
+  static const Color collect = Color(0xFFFA8072);
   // 金色
-  static const Color GOLD = Color(0xFFFFD700);
-  static const Color TEXT_TAB_INACTIVE = Color(0xFFE6E6FA);
+  static const Color gold = Color(0xFFFFD700);
+  static const Color textTabInactive = Color(0xFFE6E6FA);
 
-  static const Color WX_GREEN = Color(0xFF3CB371);
-  static const Color ICON_GRAY = Color(0xFFE0E0E0);
-  static const Color GUIDE_BG = Color(0xFFF8F8F8);
+  static const Color wxGreen = Color(0xFF3CB371);
+  static const Color iconGray = Color(0xFFE0E0E0);
+  static const Color guideBg = Color(0xFFF8F8F8);
 
   // lightThemePrimaryTint Color Swatch
   static const Color lightThemePrimaryTint = Color(0xff9e9cdc);

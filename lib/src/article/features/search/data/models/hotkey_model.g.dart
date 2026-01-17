@@ -7,9 +7,9 @@ part of 'hotkey_model.dart';
 // **************************************************************************
 
 HotkeyModel _$HotkeyModelFromJson(Map<String, dynamic> json) => HotkeyModel(
-      id: json['id'] as int,
+      id: (json['id'] as num).toInt(),
       link: json['link'] as String,
       name: json['name'] as String,
-      order: json['order'] as int,
-      visible: json['visible'] as int,
+      order: (json['order'] as num).toInt(),
+      visible: (json['visible'] as num).toInt(),
     );

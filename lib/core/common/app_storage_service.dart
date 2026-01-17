@@ -13,63 +13,63 @@ class AppStorageService {
   late final StorageService storageService;
 
   Future<String> getTheme() async {
-    String? theme = await storageService.get(APP_THEME_STORAGE_KEY) as String?;
+    String? theme = await storageService.get(appThemeStorageKey) as String?;
 
     // First time loading.
     // Set 'light' mode as the default.
     if (theme == null) {
       theme = ThemeMode.light.name;
-      storageService.set(APP_THEME_STORAGE_KEY, theme);
+      storageService.set(appThemeStorageKey, theme);
     }
     return theme;
   }
 
   Future<void> setTheme(String mode) async {
-    await storageService.set(APP_THEME_STORAGE_KEY, mode);
+    await storageService.set(appThemeStorageKey, mode);
   }
 
   Future<int> getThemeColor() async {
     int? themeColor =
-        await storageService.get(APP_THEME_COLOR_STORAGE_KEY) as int?;
+        await storageService.get(appThemeColorStorageKey) as int?;
 
     if (themeColor == null) {
       themeColor = 0xFF2196F3;
-      storageService.set(APP_THEME_COLOR_STORAGE_KEY, themeColor);
+      storageService.set(appThemeColorStorageKey, themeColor);
     }
     Cache.instance.themeColor = Color(themeColor);
     return themeColor;
   }
 
   Future<void> setThemeColor(int color) async {
-    await storageService.set(APP_THEME_COLOR_STORAGE_KEY, color);
+    await storageService.set(appThemeColorStorageKey, color);
   }
 
   Future<String> getLanguage() async {
     String? language =
-        await storageService.get(APP_LANGUAGE_STORAGE_KEY) as String?;
+        await storageService.get(appLanguageStorageKey) as String?;
 
     if (language == null) {
       language = Language.zhCN.code;
-      storageService.set(APP_LANGUAGE_STORAGE_KEY, language);
+      storageService.set(appLanguageStorageKey, language);
     }
     Cache.instance.language = language;
     return language;
   }
 
   Future<void> setLanguage(String language) async {
-    await storageService.set(APP_LANGUAGE_STORAGE_KEY, language);
+    await storageService.set(appLanguageStorageKey, language);
   }
 
   Future<String?> getToken() async {
-    return await storageService.get(APP_TOKEN_STORAGE_KEY) as String?;
+    return await storageService.get(appTokenStorageKey) as String?;
   }
 
   Future<void> setToken(String token) async {
-    await storageService.set(APP_TOKEN_STORAGE_KEY, token);
+    await storageService.set(appTokenStorageKey, token);
   }
 
   Future<User?> getUserInfo() async {
-    final json = await storageService.get(APP_USERINFO_STORAGE_KEY) as String?;
+    final json = await storageService.get(appUserInfoStorageKey) as String?;
     if (json != null) {
       final user = User.fromJson(jsonDecode(json));
       Cache.instance.user = user;
@@ -81,15 +81,15 @@ class AppStorageService {
 
   Future<void> setUserInfo(User userInfo) async {
     await storageService.set(
-        APP_USERINFO_STORAGE_KEY, jsonEncode(userInfo.toJson()));
+        appUserInfoStorageKey, jsonEncode(userInfo.toJson()));
   }
 
   Future<void> clearUserInfo() async {
-    await storageService.remove(APP_USERINFO_STORAGE_KEY);
+    await storageService.remove(appUserInfoStorageKey);
   }
 
   Future<String?> getLastInstallVersion() async {
-    final version = await storageService.get(APP_LAST_INSTALL_VERSION_KEY);
+    final version = await storageService.get(appLastInstallVersionKey);
     Cache.instance.lastVersion = version;
     return version;
   }
@@ -100,13 +100,13 @@ class AppStorageService {
     // String packageName = packageInfo.packageName;
     String version = packageInfo.version;
     // String buildNumber = packageInfo.buildNumber;
-    await storageService.set(APP_LAST_INSTALL_VERSION_KEY, version);
+    await storageService.set(appLastInstallVersionKey, version);
   }
 }
 
-const APP_THEME_STORAGE_KEY = "APP_THEME_STORAGE_KEY";
-const APP_THEME_COLOR_STORAGE_KEY = "APP_THEME_COLOR_STORAGE_KEY";
-const APP_LANGUAGE_STORAGE_KEY = "APP_LANGUAGE_STORAGE_KEY";
-const APP_USERINFO_STORAGE_KEY = "APP_USERINFO_STORAGE_KEY";
-const APP_TOKEN_STORAGE_KEY = "APP_TOKEN_STORAGE_KEY";
-const APP_LAST_INSTALL_VERSION_KEY = 'APP_LAST_INSTALL_VERSION_KEY';
+const appThemeStorageKey = "APP_THEME_STORAGE_KEY";
+const appThemeColorStorageKey = "APP_THEME_COLOR_STORAGE_KEY";
+const appLanguageStorageKey = "APP_LANGUAGE_STORAGE_KEY";
+const appUserInfoStorageKey = "APP_USERINFO_STORAGE_KEY";
+const appTokenStorageKey = "APP_TOKEN_STORAGE_KEY";
+const appLastInstallVersionKey = 'APP_LAST_INSTALL_VERSION_KEY';

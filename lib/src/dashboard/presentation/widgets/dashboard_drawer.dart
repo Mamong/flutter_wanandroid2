@@ -107,7 +107,9 @@ class DashboardDrawer extends ConsumerWidget {
                         return;
                       }
                       if (e.$1 == 'share') {
-                        Share.share(l10n.share_app_desc(Constants.downloadUrl));
+                        SharePlus.instance.share(
+                            ShareParams(text: l10n.share_app_desc(Constants.downloadUrl))
+                        );
                       } else if (e.$1 == 'logout') {
                         showLogoutAlert(context, ref);
                       } else {

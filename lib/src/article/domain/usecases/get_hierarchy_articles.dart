@@ -17,8 +17,7 @@ class GetHierarchyArticles
 
 class GetHierarchyArticlesParams extends PaginatedParams {
   const GetHierarchyArticlesParams(
-      {required int page, required int pageSize, required this.cid})
-      : super(page: page, pageSize: pageSize);
+      {required super.page, required super.pageSize, required this.cid});
 
   final int cid;
 

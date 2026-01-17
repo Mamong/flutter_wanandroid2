@@ -43,7 +43,7 @@ class _AboutLinkerItemState extends State<AboutLinkerItem> {
 
     return RichText(
         text: TextSpan(
-            style: TextStyle(color: Colours.MAIN_TEXT, fontSize: 30.w),
+            style: TextStyle(color: Colours.mainText, fontSize: 30.w),
             children: [
           TextSpan(text: "${widget.title}："),
           TextSpan(

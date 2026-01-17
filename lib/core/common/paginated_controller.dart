@@ -6,6 +6,7 @@ import 'package:flutter_wanandroid2/src/article/domain/entities/paginated_resp.d
 
 
 mixin PaginationController<T> on AsyncNotifierBase<PaginatedResp<T>> {
+
   PaginatedParams nextPage(PaginatedResp<T> current) {
     return PaginatedParams(
         pageSize: current.size, page: current.curPage + 1);

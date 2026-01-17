@@ -7,8 +7,8 @@ final GlobalKey<NavigatorState> rootNavigatorKey =
     GlobalKey<NavigatorState>(debugLabel: 'root');
 
 /// For routes that SHOULD have the bottom nav bar
-final GlobalKey<NavigatorState> _shellNavigatorKey =
-    GlobalKey<NavigatorState>(debugLabel: 'shell');
+//final GlobalKey<NavigatorState> _shellNavigatorKey =
+//     GlobalKey<NavigatorState>(debugLabel: 'shell');
 
 final router = GoRouter(
   navigatorKey: rootNavigatorKey,

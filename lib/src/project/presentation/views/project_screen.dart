@@ -41,7 +41,7 @@ class ProjectScreen extends ConsumerWidget {
               ));
         },
         error: (error, stack) {
-          print(stack);
+          debugPrint(error.toString());
           return Scaffold(
               appBar: AppBar(title: Text(l10n.tab_public_account)),
               body: ErrorView(

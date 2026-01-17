@@ -1,3 +1,4 @@
+/*
 import 'dart:async';
 
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
@@ -5,7 +6,6 @@ import 'package:flutter/foundation.dart';
 
 export 'package:firebase_dynamic_links/firebase_dynamic_links.dart'
     show SocialMetaTagParameters;
-
 typedef OnNewDynamicLinkPath = void Function(String newDynamicLinkPath);
 
 /// Wrapper around [FirebaseDynamicLinks].
@@ -58,3 +58,5 @@ class DynamicLinkService {
     );
   }
 }
+
+ */

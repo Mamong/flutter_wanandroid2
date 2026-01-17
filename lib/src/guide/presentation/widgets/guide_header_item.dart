@@ -27,7 +27,7 @@ class GuideHeaderItem extends ConsumerWidget {
           child: Text(
         section.name,
         style: TextStyle(
-            color: selected ? settingsProvider.themeColor : Colours.MAIN_TEXT),
+            color: selected ? settingsProvider.themeColor : Colours.mainText),
       )),
     );
   }

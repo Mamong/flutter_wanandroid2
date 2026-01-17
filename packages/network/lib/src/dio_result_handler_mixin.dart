@@ -54,7 +54,7 @@ mixin ResultHandlerMixin on HttpService {
         //   identifier = 'Socket Exception ${e.message}\n at  $endpoint';
         //   break;
 
-        case DioException:
+        case const (DioException):
           e as DioException;
           message = e.response?.data?['message'] ?? 'Internal Error occurred';
           statusCode = ErrorType.httpException;
